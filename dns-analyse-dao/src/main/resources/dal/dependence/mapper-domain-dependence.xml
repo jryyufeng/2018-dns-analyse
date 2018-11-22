@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dns.analyse.dao.mapper.SchoolTreeMapper">
+    <resultMap id="SchoolTreeRes" type="com.how2java.pojo.SchoolTree">
+        <!-- property: 指的是集合属性的值, column：参数名  -->
+        <id column="id" property="id" />
+        <result column="pid" property="pid" />
+        <result column="name" property="name"/>
+
+        <!-- 一对多的关系 （查多表时）-->
+        <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+        <!--<collection property="products" ofType="Product">-->
+        <!--<id column="pid" property="id" />-->
+        <!--<result column="pname" property="name" />-->
+        <!--<result column="price" property="price" />-->
+        <!--</collection>-->
+    </resultMap>
+
+    <!--left join 是left outer join的简写-->
+
+    <select id="queryById" resultMap="SchoolTreeRes">
+        select id,pid,name from school_tree where pid =#{pid}
+    </select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dns-analyse.iml" filepath="$PROJECT_DIR$/dns-analyse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dns-analyse-dao/dns-analyse-dao.iml" filepath="$PROJECT_DIR$/dns-analyse-dao/dns-analyse-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dns-analyse-server/dns-analyse-server.iml" filepath="$PROJECT_DIR$/dns-analyse-server/dns-analyse-server.iml" />
+    </modules>
+  </component>
+</project>
