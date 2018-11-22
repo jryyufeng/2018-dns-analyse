@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17fb1cb5-1172-414b-909b-34ff2aef1d49" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dns-analyse.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -575,12 +575,12 @@
       <option name="number" value="Default" />
       <updated>1542805003779</updated>
       <workItem from="1542805005476" duration="4175000" />
-      <workItem from="1542868810458" duration="163000" />
+      <workItem from="1542868810458" duration="336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4338000" />
+    <option name="totallyTimeSpent" value="4511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
