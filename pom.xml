@@ -25,11 +25,18 @@
         <commons-beanutils.version>1.9.2</commons-beanutils.version>
         <junit.version>4.12</junit.version>
         <fastjson.version>1.2.41</fastjson.version>
+        <mysql.version>5.1.25</mysql.version>
     </properties>
 
     <build>
         <pluginManagement>
             <plugins>
+                <!-- 配置Tomcat插件 -->
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -156,6 +163,13 @@
                 <artifactId>spring-aspects</artifactId>
                 <version>${spring-framework.version}</version>
             </dependency>
+            <!--mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
             <!-- cglib -->
             <dependency>
                 <groupId>cglib</groupId>
@@ -205,16 +219,6 @@
                 <version>${jackson.version}</version>
             </dependency>
             <!--validator-->
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>6.0.2.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.el</artifactId>
-                <version>3.0.1-b08</version>
-            </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>

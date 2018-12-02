@@ -14,9 +14,6 @@
   <context:annotation-config />
   <!-- aspectj注解支持 -->
   <aop:aspectj-autoproxy proxy-target-class="true"/>
-  <!-- javaBean 方法检验校验 -->
-
   <import resource="dal/applicationContext-db-slt.xml"/>
-
 
 </beans>

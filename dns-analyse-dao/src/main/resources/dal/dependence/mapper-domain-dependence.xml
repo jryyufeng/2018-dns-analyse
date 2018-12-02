@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="dns.analyse.dao.mapper.SchoolTreeMapper">
-    <resultMap id="SchoolTreeRes" type="com.how2java.pojo.SchoolTree">
+    <resultMap id="SchoolTreeRes" type="dns.analyse.dao.model.SchoolTree">
         <!-- property: 指的是集合属性的值, column：参数名  -->
         <id column="id" property="id" />
         <result column="pid" property="pid" />
