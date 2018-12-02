@@ -95,10 +95,10 @@
                 AND domain =#{condition.domain,jdbcType=VARCHAR}
             </if>
             <if test="condition.domainTree != null   and condition.domainTree !='' ">
-                AND domain_tree =#{condition.domainTree,jdbcType=MEDIUMTEXT}
+                AND domain_tree =#{condition.domainTree,jdbcType=VARCHAR}
             </if>
             <if test="condition.domainIp != null   and condition.domainIp !='' ">
-                AND domain_ip =#{condition.domainIp,jdbcType=MEDIUMTEXT}
+                AND domain_ip =#{condition.domainIp,jdbcType=VARCHAR}
             </if>
             <if test="condition.flag != null   and condition.flag !='' ">
                 AND flag =#{condition.flag,jdbcType=INT UNSIGNED}
