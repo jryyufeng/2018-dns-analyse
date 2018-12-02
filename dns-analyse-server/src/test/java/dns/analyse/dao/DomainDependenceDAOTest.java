@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Date;
 import  java.lang.Long;
 
+import com.meituan.bep.sqt.lib.common.util.JsonUtil;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
@@ -29,7 +30,6 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     @Test
     @Rollback(false)  // 避免事务回滚
     public void insert() {
-
         DomainDependencePO po=new DomainDependencePO();
 
         po.setDomain("Domain");
