@@ -254,6 +254,15 @@
         </if>
         </where>
         </update>
+    <select id="queryByIds" resultMap="domainDetailResultMap">
+        <include refid="selectField"/>
+        WHERE id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        AND is_valid=1
+    </select>
+
 
 
 

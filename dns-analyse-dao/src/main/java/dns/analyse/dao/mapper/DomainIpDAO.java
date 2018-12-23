@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
  * from maker
  */
 @Repository
-public interface DomainIpDAO extends  BaseDAO<DomainIpPO,Long>  {
+public interface DomainIpDAO extends  BaseDAO<DomainIpPO,Integer>  {
 
 
 }

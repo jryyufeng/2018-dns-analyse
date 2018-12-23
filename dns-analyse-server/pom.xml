@@ -49,9 +49,5 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.meituan.bep.sqt</groupId>
-            <artifactId>sqt-common-lib</artifactId>
-        </dependency>
     </dependencies>
 </project>

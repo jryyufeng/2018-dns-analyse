@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Date;
 import  java.lang.Long;
 
-import com.meituan.bep.sqt.lib.common.util.JsonUtil;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
@@ -39,16 +38,14 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         po.setMpsExist(1);
         po.setDomainNum(1);
         po.setIsValid(1);
-
-        Long ret = domainDependenceDAO.insert(po);
+        Integer ret = domainDependenceDAO.insert(po);
         System.out.println("ret=="+ret);
         ////Assert.assertTrue(ret == 1);
     }
 
     @Test
     public void queryById() {
-
-        DomainDependencePO po=domainDependenceDAO.queryById(Long.valueOf(1));
+        DomainDependencePO po=domainDependenceDAO.queryById(1);
         System.out.println("po=="+po);
         ////Assert.assertTrue(po != null);
     }
@@ -145,7 +142,7 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     @Test
     public void deleteById(){
 
-        Integer i=domainDependenceDAO.deleteById(Long.valueOf(1),"gu");
+        Integer i=domainDependenceDAO.deleteById(1,"gu");
         System.out.println("i=="+i);
         ////Assert.assertTrue(res == 1);
     }
@@ -180,7 +177,7 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
             domainDependencePO.setMpsExist(1);
             domainDependencePO.setDomainNum(1);
             domainDependencePO.setIsValid(1);
-        Integer i=domainDependenceDAO.updateById(domainDependencePO,Long.valueOf(1));
+        Integer i=domainDependenceDAO.updateById(domainDependencePO,1);
         System.out.println("i=="+i);
         ////Assert.assertTrue(res == 1);
     }

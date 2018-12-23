@@ -27,6 +27,7 @@
         <fastjson.version>1.2.41</fastjson.version>
         <mysql.version>5.1.25</mysql.version>
         <sqt-common-lib.version>1.1.11-SNAPSHOT</sqt-common-lib.version>
+        <log4j.version>2.7</log4j.version>
     </properties>
 
     <build>
@@ -287,6 +288,17 @@
                 <groupId>com.meituan.bep.sqt</groupId>
                 <artifactId>sqt-common-lib</artifactId>
                 <version>${sqt-common-lib.version}</version>
+            </dependency>
+            <!--log4j2-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

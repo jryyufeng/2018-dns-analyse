@@ -16,9 +16,10 @@ import org.springframework.stereotype.Repository;
 
 public interface BaseDAO<E,PK> {
 
-    Long insert(E po);
+    Integer insert(E po);
 
     E queryById(PK id);
+    List<E> queryByIds(List<PK> id);
 
     /**
      * 根据属性查询对象
