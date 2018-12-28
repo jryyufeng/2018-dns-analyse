@@ -3,17 +3,20 @@ package dns.analyse.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
-import  java.lang.Long;
+import java.util.concurrent.TimeUnit;
 
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
-import org.junit.Assert;
+import dns.analyse.service.tools.JedisUtil;
+import dns.analyse.service.tools.RedisCacheManager;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.annotation.Rollback;
+
+import javax.annotation.Resource;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -23,9 +26,8 @@ import org.springframework.test.annotation.Rollback;
 public class DomainDependenceDAOTest extends AbstractJunitTest {
     @Autowired
     private DomainDependenceDAO domainDependenceDAO;
-      
-
-
+    @Autowired
+    private JedisUtil jedisUtil;
     @Test
     @Rollback(false)  // 避免事务回滚
     public void insert() {
@@ -206,6 +208,11 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         Integer i=domainDependenceDAO.updateByCondition(domainDependencePO,condition);
         System.out.println("i=="+i);
         ////Assert.assertTrue(res == 1);
+    }
+    @Test
+    public void test1 () {
+        // redisCacheManager.set("test12","123890",60);
+       display(jedisUtil.demo_set());
     }
 
 }

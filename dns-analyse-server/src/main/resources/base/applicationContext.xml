@@ -17,6 +17,7 @@
   <!-- javaBean 方法检验校验 -->
 
   <import resource="dal/applicationContext-db-slt.xml"/>
+  <import resource="spring-redis.xml"/>
 
 
 </beans>

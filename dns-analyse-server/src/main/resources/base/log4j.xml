@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn">
-  <!-- https://wiki.sankuai.com/pages/viewpage.action?pageId=509754543 -->
   <appenders>
     <Console name="Console" target="SYSTEM_OUT" follow="true">
       <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %t [%p] %c{1} (%F:%L) %msg%n"/>
@@ -31,7 +30,7 @@
       <appender-ref ref="WARN-LOG"/>
     </root>
 
-    <logger name="com.meituan.bep.platform" level="INFO">
+    <logger name="dns.analyse" level="INFO">
       <appender-ref ref="SERVICE-LOG" />
     </logger>
 
