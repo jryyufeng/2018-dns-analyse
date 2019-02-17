@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dns.analyse.dao.mapper.DomainAnalyseDAO">
+
+    <resultMap id="domainAnalyseResultMap"
+               type="dns.analyse.dao.model.DomainAnalysePO">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="mcs" jdbcType="VARCHAR" property="Mcs"/>
+        <result column="mps" jdbcType="VARCHAR" property="Mps"/>
+        <result column="mpsCount" jdbcType="INTEGER" property="mpscount"/>
+        <result column="mcsCount" jdbcType="INTEGER" property="mcscount"/>
+        <result column="domain" jdbcType="VARCHAR" property="domain"/>
+        <result column="tag" jdbcType="TINYINT" property="tag"/>
+        <result column="structImportance" jdbcType="VARCHAR" property="StructImportance"/>
+    </resultMap>
+
+    <sql id="selectField">
+        SELECT
+        id,
+        domain,
+        Mcs,
+        Mps,
+        mpscount,
+        mcscount,
+        tag,
+        StructImportance
+        FROM  domain_analyse
+    </sql>
+
+    <insert id="insert" parameterType="dns.analyse.dao.model.DomainAnalysePO"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO domain_analyse (
+        domain,
+        Mcs,
+        Mps,
+        mpscount,
+        mcscount,
+        tag,
+        StructImportance
+        ) VALUES (
+        #{domain,jdbcType=VARCHAR},
+        #{mcs,jdbcType=VARCHAR},
+        #{mps,jdbcType=VARCHAR},
+        #{mpsCount,jdbcType=INTEGER},
+        #{mpsCount,jdbcType=INTEGER},
+        #{tag,jdbcType=TINYINT},
+        #{structImportance,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+
+    <select id="queryAllByCondition"  parameterType="map" resultMap="domainAnalyseResultMap">
+        <include refid="selectField"/>
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.domain != null   and condition.domain !='' ">
+              and domain =#{condition.domain,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.tag != null   and condition.tag !='' ">
+                AND tag =#{condition.tag,jdbcType=TINYINT}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer" >
+        SELECT  count(*) from domain_cdn
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.domain != null   and condition.domain !='' ">
+                and domain =#{condition.domain,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.tag != null   and condition.tag !='' ">
+                AND tag =#{condition.tag,jdbcType=TINYINT}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="queryPageByCondition" parameterType="map" resultMap="domainAnalyseResultMap">
+        <include refid="selectField"/>
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.domain != null   and condition.domain !='' ">
+                and domain =#{condition.domain,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.tag != null   and condition.tag !='' ">
+                AND tag =#{condition.tag,jdbcType=TINYINT}
+            </if>
+            limit ${fromNum},${pageSize}
+        </where>
+    </select>
+
+    <update id="updateByCondition" parameterType="map">
+        update domain_cdn
+        <set>
+            <if test="po.id != null and po.id !=''  ">
+                id =#{po.id,jdbcType=INTEGER},
+            </if>
+            <if test="po.domain != null and po.domain !=''  ">
+                domain =#{po.domain,jdbcType=VARCHAR},
+            </if>
+            <if test="po.mps != null and po.mps !=''  ">
+                mps =#{po.mps,jdbcType=VARCHAR},
+            </if>
+            <if test="po.mcs != null and po.mcs !=''  ">
+                mcs =#{po.mcs,jdbcType=VARCHAR},
+            </if>
+            <if test="po.tag != null and po.tag !=''  ">
+                tag =#{po.tag,jdbcType=TINYINT}
+            </if>
+        </set>
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.domain != null   and condition.domain !='' ">
+                and domain =#{condition.domain,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.tag != null   and condition.tag !='' ">
+                AND tag =#{condition.tag,jdbcType=TINYINT}
+            </if>
+        </where>
+    </update>
+
+    <select id="queryByIds" resultMap="domainAnalyseResultMap">
+        <include refid="selectField"/>
+        WHERE id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+
+</mapper>

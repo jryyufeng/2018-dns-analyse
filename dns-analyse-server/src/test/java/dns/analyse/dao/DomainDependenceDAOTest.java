@@ -11,6 +11,7 @@ import dns.analyse.AbstractJunitTest;
 import dns.analyse.service.tools.JedisUtil;
 import dns.analyse.service.tools.RedisCacheManager;
 import org.junit.Test;
+import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.redis.core.RedisTemplate;
@@ -98,14 +99,6 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         //Assert.assertTrue(poList.size() != 0);
     }
 
-    @Test
-    public void queryAll(){
-
-        List<DomainDependencePO> poList=domainDependenceDAO.queryAll();
-        System.out.println("poList.size=="+poList.size());
-        //Assert.assertTrue(poList.size() != 0);
-    }
-
 
     @Test
     public void queryCountByCondition(){
@@ -141,48 +134,6 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         System.out.println("poList.size=="+poList.size());
         //Assert.assertTrue(poList.size() != 0);
     }
-    @Test
-    public void deleteById(){
-
-        Integer i=domainDependenceDAO.deleteById(1,"gu");
-        System.out.println("i=="+i);
-        ////Assert.assertTrue(res == 1);
-    }
-
-    @Test
-    public void deleteAllByCondition(){
-
-
-        DomainDependencePO domainDependencePO=new DomainDependencePO();
-            domainDependencePO.setDomain("Domain");
-            domainDependencePO.setDomainTree("DomainTree");
-            domainDependencePO.setDomainIp("DomainIp");
-            domainDependencePO.setFlag(1);
-            domainDependencePO.setMpsExist(1);
-            domainDependencePO.setDomainNum(1);
-            domainDependencePO.setIsValid(1);
-        Integer i=domainDependenceDAO.deleteAllByCondition(domainDependencePO,"gu");
-        System.out.println("i=="+i);
-        ////Assert.assertTrue(res == 1);
-    }
-
-
-    @Test
-    //@Rollback(false)  // 避免事务回滚
-    public void updateById(){
-
-        DomainDependencePO domainDependencePO=new DomainDependencePO();
-            domainDependencePO.setDomain("Domain");
-            domainDependencePO.setDomainTree("DomainTree");
-            domainDependencePO.setDomainIp("DomainIp");
-            domainDependencePO.setFlag(1);
-            domainDependencePO.setMpsExist(1);
-            domainDependencePO.setDomainNum(1);
-            domainDependencePO.setIsValid(1);
-        Integer i=domainDependenceDAO.updateById(domainDependencePO,1);
-        System.out.println("i=="+i);
-        ////Assert.assertTrue(res == 1);
-    }
 
     @Test
     //@Rollback(false)  // 避免事务回滚
@@ -213,6 +164,12 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     public void test1 () {
         // redisCacheManager.set("test12","123890",60);
        display(jedisUtil.demo_set());
+    }
+    @Test
+    public void testPyrhon(){
+        PythonInterpreter interpreter = new PythonInterpreter();
+        interpreter.exec("print('hello')");
+
     }
 
 }

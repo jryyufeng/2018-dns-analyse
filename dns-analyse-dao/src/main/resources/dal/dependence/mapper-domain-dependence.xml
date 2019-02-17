@@ -42,8 +42,7 @@
         domain_ip,
         flag,
         mps_exist,
-        domain_num,
-        is_valid
+        domain_num
         ) VALUES (
         #{domain,jdbcType=VARCHAR},
         #{domainTree,jdbcType=VARCHAR},
@@ -54,38 +53,6 @@
         1
         )
         </insert>
-
-
-    <select id="queryAll" resultMap="domainDependenceResultMap">
-        <include refid="selectField"/>
-        WHERE  is_valid=1
-
-    </select>
-
-    <select id="queryById" resultMap="domainDependenceResultMap">
-        <include refid="selectField"/>
-        WHERE id = #{id}
-    </select>
-
-    <select id="queryByProperty" resultMap="domainDependenceResultMap">
-        <include refid="selectField"/>
-        WHERE ${property} =#{value}
-    </select>
-
-    <select id="queryAllByProperty" resultMap="domainDependenceResultMap">
-        <include refid="selectField"/>
-        WHERE  ${property} = #{value}
-    </select>
-
-    <select id="queryInAllByProperty" resultMap="domainDependenceResultMap">
-        <include refid="selectField"/>
-        WHERE  ${property} in
-        <foreach item="item" index="index"   collection="list"
-                 open="(" separator="," close=")">
-            #{item}
-        </foreach>
-    </select>
-
 
     <select id="queryAllByCondition"  parameterType="map" resultMap="domainDependenceResultMap">
         <include refid="selectField"/>
@@ -145,110 +112,33 @@
 
 
     <select id="queryPageByCondition" parameterType="map" resultMap="domainDependenceResultMap">
-        <include refid="selectField"/>
-        <where>
-            AND is_valid=1
-            <if test="condition.domain != null and condition.domain !='' ">
-                AND domain =#{condition.domain,jdbcType=VARCHAR}
-            </if>
-            <if test="condition.domainTree != null and condition.domainTree !='' ">
-                AND domain_tree =#{condition.domainTree,jdbcType=VARCHAR}
-            </if>
-            <if test="condition.domainIp != null and condition.domainIp !='' ">
-                AND domain_ip =#{condition.domainIp,jdbcType=VARCHAR}
-            </if>
-            <if test="condition.flag != null and condition.flag !='' ">
-                AND flag =#{condition.flag,jdbcType=INTEGER}
-            </if>
-            <if test="condition.id != null and condition.id !='' ">
-                AND id =#{condition.id,jdbcType=INTEGER}
-            </if>
-            <if test="condition.mpsExist != null and condition.mpsExist !='' ">
-                AND mps_exist =#{condition.mpsExist,jdbcType=TINYINT}
-            </if>
-            <if test="condition.domainNum != null and condition.domainNum !='' ">
-                AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
-            </if>
-            limit ${fromNum},${pageSize}
-        </where>
-    </select>
-
-    <update id="deleteById" parameterType="map">
-        UPDATE
-        domain_dependence
-        SET
-        is_valid=0,
-        updated_by=#{deleter},
-        update_time=now()
-        WHERE id = #{id}
-        </update>
-
-    <update id="deleteAllByCondition" parameterType="map">
-        update domain_dependence
-        <set>
-            is_valid=0,
-            updated_by=#{deleter},
-            update_time=now()
-        </set>
-        <where>
-            <if test="condition.domain != null and condition.domain !=''  ">
-                AND domain =#{condition.domain,jdbcType=VARCHAR}
-            </if>
-            <if test="condition.domainTree != null and condition.domainTree !=''  ">
-                AND domain_tree =#{condition.domainTree,jdbcType=VARCHAR}
-            </if>
-            <if test="condition.domainIp != null and condition.domainIp !=''  ">
-                AND domain_ip =#{condition.domainIp,jdbcType=VARCHAR}
-            </if>
-            <if test="condition.flag != null and condition.flag !=''  ">
-                AND flag =#{condition.flag,jdbcType=INTEGER}
-            </if>
-            <if test="condition.id != null and condition.id !=''  ">
-                AND id =#{condition.id,jdbcType=INTEGER}
-            </if>
-            <if test="condition.mpsExist != null and condition.mpsExist !=''  ">
-                AND mps_exist =#{condition.mpsExist,jdbcType=TINYINT}
-            </if>
-            <if test="condition.domainNum != null and condition.domainNum !=''  ">
-                AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
-            </if>
-        </where>
-    </update>
-
-    <!--根据id更新-->
-    <update id="updateById" parameterType="map">
-        UPDATE
-        domain_dependence
-        SET
-        <if test="po.domain != null and po.domain !=''  ">
-            domain =#{po.domain,jdbcType=VARCHAR},
+    <include refid="selectField"/>
+    <where>
+        AND is_valid=1
+        <if test="condition.domain != null and condition.domain !='' ">
+            AND domain =#{condition.domain,jdbcType=VARCHAR}
         </if>
-        <if test="po.domainTree != null and po.domainTree !=''  ">
-            domain_tree =#{po.domainTree,jdbcType=VARCHAR},
+        <if test="condition.domainTree != null and condition.domainTree !='' ">
+            AND domain_tree =#{condition.domainTree,jdbcType=VARCHAR}
         </if>
-        <if test="po.domainIp != null and po.domainIp !=''  ">
-            domain_ip =#{po.domainIp,jdbcType=VARCHAR},
+        <if test="condition.domainIp != null and condition.domainIp !='' ">
+            AND domain_ip =#{condition.domainIp,jdbcType=VARCHAR}
         </if>
-        <if test="po.flag != null and po.flag !=''  ">
-            flag =#{po.flag,jdbcType=INTEGER},
+        <if test="condition.flag != null and condition.flag !='' ">
+            AND flag =#{condition.flag,jdbcType=INTEGER}
         </if>
-        <if test="po.id != null and po.id !=''  ">
-            id =#{po.id,jdbcType=INTEGER},
+        <if test="condition.id != null and condition.id !='' ">
+            AND id =#{condition.id,jdbcType=INTEGER}
         </if>
-        <if test="po.mpsExist != null and po.mpsExist !=''  ">
-            mps_exist =#{po.mpsExist,jdbcType=TINYINT},
+        <if test="condition.mpsExist != null and condition.mpsExist !='' ">
+            AND mps_exist =#{condition.mpsExist,jdbcType=TINYINT}
         </if>
-        <if test="po.domainNum != null and po.domainNum !=''  ">
-            domain_num =#{po.domainNum,jdbcType=INTEGER},
+        <if test="condition.domainNum != null and condition.domainNum !='' ">
+            AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
         </if>
-        <if test="po.isValid != null and po.isValid !=''  ">
-            is_valid =#{po.isValid,jdbcType=TINYINT},
-        </if>
-        update_time=now()
-        WHERE id = #{id} and is_valid=1
-    </update>
-
-
+        limit ${fromNum},${pageSize}
+    </where>
+</select>
 
     <update id="updateByCondition" parameterType="map">
         update domain_dependence

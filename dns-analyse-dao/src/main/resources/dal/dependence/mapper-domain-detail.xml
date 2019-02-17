@@ -47,35 +47,9 @@
         )
         </insert>
 
-
-        <select id="queryAll" resultMap="domainDetailResultMap">
-        <include refid="selectField"/>
-        WHERE  is_valid=1
-
-        </select>
-
         <select id="queryById" resultMap="domainDetailResultMap">
         <include refid="selectField"/>
         WHERE id = #{id}
-        </select>
-
-        <select id="queryByProperty" resultMap="domainDetailResultMap">
-        <include refid="selectField"/>
-        WHERE ${property} =#{value}
-        </select>
-
-        <select id="queryAllByProperty" resultMap="domainDetailResultMap">
-        <include refid="selectField"/>
-        WHERE  ${property} = #{value}
-        </select>
-
-        <select id="queryInAllByProperty" resultMap="domainDetailResultMap">
-        <include refid="selectField"/>
-        WHERE  ${property} in
-        <foreach item="item" index="index"   collection="list"
-                 open="(" separator="," close=")">
-             #{item}
-        </foreach>
         </select>
 
 
@@ -146,69 +120,6 @@
         limit ${fromNum},${pageSize}
         </where>
         </select>
-
-        <update id="deleteById" parameterType="map">
-        UPDATE
-        domain_detail
-        SET
-        is_valid=0,
-        updated_by=#{deleter},
-        update_time=now()
-        WHERE id = #{id}
-        </update>
-
-        <update id="deleteAllByCondition" parameterType="map">
-        update domain_detail
-        <set>
-            is_valid=0,
-            updated_by=#{deleter},
-            update_time=now()
-        </set>
-        <where>
-        <if test="condition.id != null and condition.id !=''  ">
-        AND id =#{condition.id,jdbcType=INTEGER}
-        </if>
-        <if test="condition.domain != null and condition.domain !=''  ">
-        AND domain =#{condition.domain,jdbcType=VARCHAR}
-        </if>
-        <if test="condition.domainOutNum != null and condition.domainOutNum !=''  ">
-        AND domain_out_num =#{condition.domainOutNum,jdbcType=INTEGER}
-        </if>
-        <if test="condition.domainDetial != null and condition.domainDetial !=''  ">
-        AND domain_detial =#{condition.domainDetial,jdbcType=VARCHAR}
-        </if>
-        <if test="condition.subnetDetial != null and condition.subnetDetial !=''  ">
-        AND subnet_detial =#{condition.subnetDetial,jdbcType=VARCHAR}
-        </if>
-        </where>
-        </update>
-
-        <!--根据id更新-->
-        <update id="updateById" parameterType="map">
-        UPDATE
-        domain_detail
-        SET
-        <if test="po.id != null and po.id !=''  ">
-            id =#{po.id,jdbcType=INTEGER},
-        </if>
-        <if test="po.domain != null and po.domain !=''  ">
-            domain =#{po.domain,jdbcType=VARCHAR},
-        </if>
-        <if test="po.domainOutNum != null and po.domainOutNum !=''  ">
-            domain_out_num =#{po.domainOutNum,jdbcType=INTEGER},
-        </if>
-        <if test="po.domainDetial != null and po.domainDetial !=''  ">
-            domain_detial =#{po.domainDetial,jdbcType=VARCHAR},
-        </if>
-        <if test="po.isValid != null and po.isValid !=''  ">
-            is_valid =#{po.isValid,jdbcType=TINYINT},
-        </if>
-        <if test="po.subnetDetial != null and po.subnetDetial !=''  ">
-            subnet_detial =#{po.subnetDetial,jdbcType=VARCHAR},
-        </if>
-        update_time=now()
-        WHERE id = #{id} and is_valid=1
-        </update>
 
 
 
