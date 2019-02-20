@@ -298,6 +298,11 @@
                 <version>${log4j.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-web</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jdeis.version}</version>

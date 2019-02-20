@@ -2,22 +2,24 @@ package dns.analyse.dao;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
+
+import com.alibaba.fastjson.JSON;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
 import dns.analyse.service.tools.JedisUtil;
-import dns.analyse.service.tools.RedisCacheManager;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.annotation.Rollback;
 
-import javax.annotation.Resource;
+import org.springframework.test.annotation.Rollback;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -25,6 +27,7 @@ import javax.annotation.Resource;
  * Description:
  */
 public class DomainDependenceDAOTest extends AbstractJunitTest {
+    private static final Logger LOGGER = LogManager.getLogger(DomainDependenceDAOTest.class.getName());
     @Autowired
     private DomainDependenceDAO domainDependenceDAO;
     @Autowired
@@ -48,8 +51,9 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
 
     @Test
     public void queryById() {
-        DomainDependencePO po=domainDependenceDAO.queryById(1);
-        System.out.println("po=="+po);
+        LOGGER.warn("1234");
+        List<DomainDependencePO> po=domainDependenceDAO.queryByIds(Arrays.asList(1,2));
+        System.out.println("po=="+ JSON.toJSON(po));
         ////Assert.assertTrue(po != null);
     }
 
@@ -164,6 +168,10 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     public void test1 () {
         // redisCacheManager.set("test12","123890",60);
        display(jedisUtil.demo_set());
+    }
+    @Test
+    public void testLog () {
+        LOGGER.warn("123sfsfdsfds");
     }
     @Test
     public void testPyrhon(){

@@ -89,5 +89,8 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" name="Maven: org.python:jython-standalone:2.7.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-web:2.7" level="project" />
   </component>
 </module>
