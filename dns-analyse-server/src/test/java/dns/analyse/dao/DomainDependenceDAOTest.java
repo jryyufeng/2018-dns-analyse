@@ -19,6 +19,7 @@ import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.test.annotation.Rollback;
 
 /**
@@ -170,7 +171,9 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
        display(jedisUtil.demo_set());
     }
     @Test
+    @Scheduled(cron = "0/5 * * * * ?")
     public void testLog () {
+        display("123");
         LOGGER.warn("123sfsfdsfds");
     }
     @Test

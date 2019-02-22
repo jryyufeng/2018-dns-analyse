@@ -4,6 +4,7 @@ import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.service.IDnsDomainDependenceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,4 +32,9 @@ public class test1 {
         List<DomainDependencePO> list = dnsDomainDependenceService.queryByIds(Arrays.asList(1,2));
         return list;
     }
+//    可能还需要@Component
+//    @Scheduled(cron = "0/5 * * * * ?")
+//    public void testLog () {
+//        System.out.println("123");
+//    }
 }
