@@ -8,10 +8,10 @@
 
 <#--菜单-->
 <ul class="nav nav-list">
-    <li class="active" onclick="loadPage('/main/transferGate');">
+    <li class="active" onclick="loadPage('/admin/view/main/mainView');">
         <a href="javascript:void(0);">
             <i class="icon-link"></i>
-            <span class="menu-text"> 常用地址 </span>
+            <span class="menu-text"> 大盘概况 </span>
         </a>
     </li>
     <li>
@@ -21,19 +21,19 @@
             <b class="arrow icon-angle-down"></b>
         </a>
         <ul class="submenu">
-            <li onclick="loadPage('/admin/view/orderbusiness/list');">
+            <li onclick="loadPage('/admin/view/dependence/list');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 依赖原始信息 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/orderinfo/list');">
+            <li onclick="loadPage('/admin/view/dependence/cdnDependence');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> cdn依赖 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/orderinfo/list');">
+            <li onclick="loadPage('/admin/view/dependence/ipInfo');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> ip信息管理 </span>
@@ -49,19 +49,19 @@
             <b class="arrow icon-angle-down"></b>
         </a>
         <ul class="submenu">
-            <li onclick="loadPage('/admin/view/orderbusiness/list');">
+            <li onclick="loadPage('/admin/view/analyse/list');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
-                    <span class="menu-text"> 原始故障模型 </span>
+                    <span class="menu-text"> 故障原始模型 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/orderinfo/list');">
+            <li onclick="loadPage('/admin/view/analyse/list');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 服务器重要度查询 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/orderinfo/list');">
+            <li onclick="loadPage('/admin/view/analyse/list');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 故障模型分析 </span>

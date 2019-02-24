@@ -15,6 +15,7 @@
         <result column="mps_exist" jdbcType="TINYINT" property="mpsExist"/>
         <result column="domain_num" jdbcType="INTEGER" property="domainNum"/>
         <result column="is_valid" jdbcType="TINYINT" property="isValid"/>
+        <result column="cross_domain" jdbcType="INTEGER" property="crossomain"/>
     </resultMap>
 
 
@@ -28,7 +29,8 @@
         id,
         mps_exist,
         domain_num,
-        is_valid
+        is_valid,
+        cross_domain
         FROM  domain_dependence
     </sql>
 
@@ -42,7 +44,9 @@
         domain_ip,
         flag,
         mps_exist,
-        domain_num
+        domain_num,
+        is_valid,
+        cross_domain
         ) VALUES (
         #{domain,jdbcType=VARCHAR},
         #{domainTree,jdbcType=VARCHAR},
@@ -50,7 +54,8 @@
         #{flag,jdbcType=INTEGER},
         #{mpsExist,jdbcType=TINYINT},
         #{domainNum,jdbcType=INTEGER},
-        1
+        1,
+        #{crossDomain,jdbcType=INTEGER},
         )
         </insert>
 
@@ -78,6 +83,9 @@
             </if>
             <if test="condition.domainNum != null   and condition.domainNum !='' ">
                 AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
+            </if>
+            <if test="condition.crossDomain != 2 ">
+                AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
             </if>
         </where>
     </select>
@@ -107,6 +115,9 @@
             <if test="condition.domainNum != null and condition.domainNum !='' ">
                 AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
             </if>
+            <if test="condition.crossDomain != 2 ">
+                AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+            </if>
         </where>
     </select>
 
@@ -135,6 +146,9 @@
         </if>
         <if test="condition.domainNum != null and condition.domainNum !='' ">
             AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
+        </if>
+        <if test="condition.crossDomain != 2 ">
+            AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
         </if>
         limit ${fromNum},${pageSize}
     </where>
@@ -167,6 +181,9 @@
             <if test="po.isValid != null and po.isValid !=''  ">
                 is_valid =#{po.isValid,jdbcType=TINYINT},
             </if>
+            <if test="condition.crossDomain != 2 ">
+                cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+            </if>
             update_time=now()
         </set>
         <where>
@@ -191,6 +208,9 @@
             </if>
             <if test="condition.domainNum != null and condition.domainNum !='' ">
                 AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
+            </if>
+            <if test="condition.crossDomain != 2 ">
+                AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
             </if>
         </where>
     </update>

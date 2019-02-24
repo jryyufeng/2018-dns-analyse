@@ -44,5 +44,6 @@ public class DomainDependencePO {
      */
     private Integer domainNum;
 
+    private Integer crossDomain;
 
 }

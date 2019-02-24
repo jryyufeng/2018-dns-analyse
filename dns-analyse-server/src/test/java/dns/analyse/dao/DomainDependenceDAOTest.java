@@ -128,13 +128,6 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
 
         DomainDependencePO domainDependencePO=new DomainDependencePO();
             domainDependencePO.setDomain("Domain");
-            domainDependencePO.setDomainTree("DomainTree");
-            domainDependencePO.setDomainIp("DomainIp");
-            domainDependencePO.setFlag(1);
-            domainDependencePO.setMpsExist(1);
-            domainDependencePO.setDomainNum(1);
-            domainDependencePO.setIsValid(1);
-
         List<DomainDependencePO> poList=domainDependenceDAO.queryPageByCondition(domainDependencePO,from,pageSize);
         System.out.println("poList.size=="+poList.size());
         //Assert.assertTrue(poList.size() != 0);

@@ -6,13 +6,13 @@
     <resultMap id="domainAnalyseResultMap"
                type="dns.analyse.dao.model.DomainAnalysePO">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="mcs" jdbcType="VARCHAR" property="Mcs"/>
-        <result column="mps" jdbcType="VARCHAR" property="Mps"/>
-        <result column="mpsCount" jdbcType="INTEGER" property="mpscount"/>
-        <result column="mcsCount" jdbcType="INTEGER" property="mcscount"/>
+        <result column="Mcs" jdbcType="VARCHAR" property="mcs"/>
+        <result column="Mps" jdbcType="VARCHAR" property="mps"/>
+        <result column="mpscount" jdbcType="INTEGER" property="mpsCount"/>
+        <result column="mcscount" jdbcType="INTEGER" property="mcsCount"/>
         <result column="domain" jdbcType="VARCHAR" property="domain"/>
         <result column="tag" jdbcType="TINYINT" property="tag"/>
-        <result column="structImportance" jdbcType="VARCHAR" property="StructImportance"/>
+        <result column="StructImportance" jdbcType="VARCHAR" property="structImportance"/>
     </resultMap>
 
     <sql id="selectField">
@@ -67,7 +67,7 @@
     </select>
 
     <select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer" >
-        SELECT  count(*) from domain_cdn
+        SELECT  count(*) from domain_analyse
         <where>
             <if test="condition.id != null   and condition.id !='' ">
                 AND id =#{condition.id,jdbcType=INTEGER}
@@ -75,7 +75,7 @@
             <if test="condition.domain != null   and condition.domain !='' ">
                 and domain =#{condition.domain,jdbcType=VARCHAR}
             </if>
-            <if test="condition.tag != null   and condition.tag !='' ">
+            <if test="condition.tag !=2 ">
                 AND tag =#{condition.tag,jdbcType=TINYINT}
             </if>
         </where>
@@ -85,13 +85,14 @@
     <select id="queryPageByCondition" parameterType="map" resultMap="domainAnalyseResultMap">
         <include refid="selectField"/>
         <where>
+            1=1
             <if test="condition.id != null   and condition.id !='' ">
                 AND id =#{condition.id,jdbcType=INTEGER}
             </if>
             <if test="condition.domain != null   and condition.domain !='' ">
                 and domain =#{condition.domain,jdbcType=VARCHAR}
             </if>
-            <if test="condition.tag != null   and condition.tag !='' ">
+            <if test="condition.tag !=2 ">
                 AND tag =#{condition.tag,jdbcType=TINYINT}
             </if>
             limit ${fromNum},${pageSize}

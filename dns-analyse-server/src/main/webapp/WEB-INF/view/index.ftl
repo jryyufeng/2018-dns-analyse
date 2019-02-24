@@ -109,9 +109,9 @@
                 </ul>
             </div>
 
-            <#--<iframe src="${ctx}/admin/view/orderbusiness/list" id="sqtFrame" width="100%" height="100%"-->
-                    <#--frameborder="0"  class="page-content"-->
-                    <#--style="overflow-x: hidden;overflow-y: hidden;padding: 8px,10px,10px"></iframe>-->
+            <iframe src="${ctx}/admin/view/main/mainView" id="sqtFrame" width="100%" height="100%"
+                    frameborder="0"  class="page-content"
+                    style="overflow-x: hidden;overflow-y: hidden;padding: 8px,10px,10px"></iframe>
         </div>
     </div>
 </div>
