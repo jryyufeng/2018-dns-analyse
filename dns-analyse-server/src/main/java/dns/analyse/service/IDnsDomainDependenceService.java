@@ -4,6 +4,7 @@ import dns.analyse.dao.model.DomainDependencePO;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -45,4 +46,9 @@ public interface IDnsDomainDependenceService {
      * @return
      */
     List<DomainDependencePO> queryPageByCondition(DomainDependencePO condition, Integer offset, Integer pageSize);
+
+    Integer getDOMAIN_NUM(Integer type);
+    Boolean setDomainType(Integer start,Integer end);
+
+    Map<String,Integer>  getDomainProportion();
 }

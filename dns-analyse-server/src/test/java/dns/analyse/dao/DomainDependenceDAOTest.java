@@ -3,17 +3,27 @@ package dns.analyse.dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 import com.alibaba.fastjson.JSON;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
+import dns.analyse.dao.mapper.DomainDetailDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
+import dns.analyse.dao.model.DomainDetailPO;
+import dns.analyse.dao.model.DomainNetDetailPO;
+import dns.analyse.service.IDnsDomainDependenceService;
+import dns.analyse.service.IDomainDetailService;
+import dns.analyse.service.processors.CreateDomainDetailProcess;
 import dns.analyse.service.tools.JedisUtil;
 
+import jnr.ffi.annotations.In;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.plugins.convert.TypeConverters;
 import org.junit.Test;
 import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.test.annotation.Rollback;
+
+import javax.annotation.Resource;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -33,6 +45,12 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private DomainDependenceDAO domainDependenceDAO;
     @Autowired
     private JedisUtil jedisUtil;
+    @Autowired
+    private DomainDetailDAO domainDetailDAO;
+    @Resource
+    private IDomainDetailService domainDetailService;
+    @Resource
+    private IDnsDomainDependenceService dnsDomainDependenceService;
     @Test
     @Rollback(false)  // 避免事务回滚
     public void insert() {
@@ -109,13 +127,13 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     public void queryCountByCondition(){
 
         DomainDependencePO domainDependencePO=new DomainDependencePO();
-            domainDependencePO.setDomain("Domain");
-            domainDependencePO.setDomainTree("DomainTree");
-            domainDependencePO.setDomainIp("DomainIp");
-            domainDependencePO.setFlag(1);
+//            domainDependencePO.setDomain("Domain");
+//            domainDependencePO.setDomainTree("DomainTree");
+//            domainDependencePO.setDomainIp("DomainIp");
+//            domainDependencePO.setFlag(1);
             domainDependencePO.setMpsExist(1);
-            domainDependencePO.setDomainNum(1);
-            domainDependencePO.setIsValid(1);
+//            domainDependencePO.setDomainNum(1);
+//            domainDependencePO.setIsValid(1);
         Integer count=domainDependenceDAO.queryCountByCondition(domainDependencePO);
         System.out.println("count=="+count);
     }
@@ -175,5 +193,43 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         interpreter.exec("print('hello')");
 
     }
+    @Test
+    @Rollback(false)
+    public void testXml(){
+        List<DomainDependencePO> po = domainDependenceDAO.queryByIds(Collections.singletonList(3));
+        List<DomainNetDetailPO> pos =CreateDomainDetailProcess.getObjectByXml(po.get(0).getDomainTree());
+        String json = JSON.toJSONString(pos);
+        Integer count = pos.stream().filter(a -> a.getFlag()).collect(Collectors.toList()).size();
+        domainDetailDAO.insert(DomainDetailPO.builder()
+                .domain(po.get(0).getDomain())
+                .domainDetial(json)
+                .domainOutNum(count)
+                .build());
+    }
+
+    @Test
+    @Rollback(false)
+    public void testDetail(){
+        //包含开始，不包含结尾
+        //500000，550000补数据
+        domainDetailService.detailHandler(950000,1000000);
+
+        //List<DomainDependencePO> po = domainDependenceDAO.queryByIdStartAndEnd(1,10);
+    }
+    @Test
+    @Rollback(false)
+    public void testCache(){
+        //display(dnsDomainDependenceService.getDOMAIN_NUM(1));
+        dnsDomainDependenceService.setDomainType(1,100000);
+
+
+    }
+
+    @Test
+    public void getTypeNum(){
+        List<DomainDependencePO> pos = dnsDomainDependenceService.queryAllByCondition(new DomainDependencePO());
+
+    }
+
 
 }

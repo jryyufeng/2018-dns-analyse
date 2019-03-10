@@ -61,7 +61,7 @@
                     <span class="menu-text"> 服务器重要度查询 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/analyse/list');">
+            <li onclick="loadPage('/admin/view/analyse/modelAnalyse');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 故障模型分析 </span>

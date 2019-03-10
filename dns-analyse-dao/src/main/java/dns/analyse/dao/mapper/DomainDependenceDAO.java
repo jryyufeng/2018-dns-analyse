@@ -5,6 +5,7 @@ import java.lang.Long;
 
 
 import dns.analyse.dao.model.DomainDependencePO;
+import dns.analyse.dao.model.DomainDetailPO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +18,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DomainDependenceDAO extends  BaseDAO<DomainDependencePO,Integer>  {
 
+    List<DomainDependencePO> queryByIdStartAndEnd(@Param("startId") Integer startId,@Param("endId") Integer endId);
+
+    List<DomainDependencePO> querySpecialCn();
 
 }

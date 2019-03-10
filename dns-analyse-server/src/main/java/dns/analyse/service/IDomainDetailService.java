@@ -8,4 +8,5 @@ import dns.analyse.dao.model.DomainDetailPO;
  * Description:
  */
 public interface IDomainDetailService extends IDnsBaseService<DomainDetailPO> {
+    void detailHandler(Integer start,Integer end);
 }

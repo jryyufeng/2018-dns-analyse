@@ -46,4 +46,6 @@ public class DomainDependencePO {
 
     private Integer crossDomain;
 
+    private String isCn;
+
 }

@@ -1,12 +1,22 @@
 package dns.analyse.service.impl;
 
+import dns.analyse.Enum.DomainTypeEnum;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.service.IDnsDomainDependenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -72,6 +82,93 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
     @Override
     public List<DomainDependencePO> queryPageByCondition(DomainDependencePO condition, Integer offset, Integer pageSize) {
         return domainDependenceDAO.queryPageByCondition(condition, (offset - 1) * pageSize, pageSize);
+    }
+    @Override
+    public Integer getDOMAIN_NUM(Integer type){
+        try {
+            Integer count = DOMAIN_NUM_CACHE.get(type);
+            return count;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Boolean setDomainType(Integer start,Integer end){
+        List<DomainDependencePO> pos = domainDependenceDAO.queryByIdStartAndEnd(start,end);
+        pos.forEach(t->{
+            //String[] domains = t.getDomain().split("\\.");
+            String isCn = t.getIsCn();
+            if(isCn.contains("/")){
+                isCn = isCn.split("/")[0];
+            }
+            //System.out.println(isCn);
+
+            domainDependenceDAO.updateByCondition(DomainDependencePO.builder()
+                    .isCn(isCn)
+                    .build(),DomainDependencePO.builder()
+                    .id(t.getId())
+                    .build());
+            System.out.println(t.getDomain());
+
+        });
+        return true;
+    }
+
+    /**
+     * 以后要入缓存
+     * @return
+     */
+    @Override
+    public Map<String,Integer> getDomainProportion(){
+
+
+        return null;
+    }
+
+
+
+    /**
+     * key:id
+     * value:Integer
+     */
+    private LoadingCache<Integer, Integer> DOMAIN_NUM_CACHE = CacheBuilder.newBuilder()
+            .maximumSize(1024)
+            .expireAfterAccess(30, TimeUnit.DAYS)
+            .build(new CacheLoader<Integer, Integer>() {
+                       @Override
+                       public Integer load(Integer type) {
+                           Integer count =0;
+                           DomainDependencePO po = new DomainDependencePO();
+                           if(Objects.equals(type,DomainTypeEnum.IS_CROSS.getCode())){
+                               //测试先用msp_exist
+                               po.setMpsExist(1);
+                               //po.setCrossDomain(1);
+
+                           }else if(Objects.equals(type,DomainTypeEnum.NOT_CROSS.getCode())){
+                               po.setMpsExist(0);
+                               //po.setCrossDomain(0);
+                           }
+                           count = domainDependenceDAO.queryCountByCondition(po);
+                           return count;
+                       }
+                   }
+            );
+
+
+    @PostConstruct
+    public void initCache() {
+
+        try {
+            DOMAIN_NUM_CACHE.get(DomainTypeEnum.ALL.getCode());
+            DOMAIN_NUM_CACHE.get(DomainTypeEnum.IS_CROSS.getCode());
+            DOMAIN_NUM_CACHE.get(DomainTypeEnum.NOT_CROSS.getCode());
+           // DOMAIN_NUM_CACHE.get(t.getGroupName());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

@@ -16,6 +16,7 @@
         <result column="domain_num" jdbcType="INTEGER" property="domainNum"/>
         <result column="is_valid" jdbcType="TINYINT" property="isValid"/>
         <result column="cross_domain" jdbcType="INTEGER" property="crossomain"/>
+        <result column="is_cn" jdbcType="VARCHAR" property="isCn"/>
     </resultMap>
 
 
@@ -30,7 +31,8 @@
         mps_exist,
         domain_num,
         is_valid,
-        cross_domain
+        cross_domain,
+        is_cn
         FROM  domain_dependence
     </sql>
 
@@ -46,7 +48,8 @@
         mps_exist,
         domain_num,
         is_valid,
-        cross_domain
+        cross_domain,
+        is_cn
         ) VALUES (
         #{domain,jdbcType=VARCHAR},
         #{domainTree,jdbcType=VARCHAR},
@@ -56,6 +59,7 @@
         #{domainNum,jdbcType=INTEGER},
         1,
         #{crossDomain,jdbcType=INTEGER},
+        #{isCn,jdbcType=VARCHAR}
         )
         </insert>
 
@@ -87,13 +91,16 @@
             <if test="condition.crossDomain != 2 ">
                 AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
             </if>
+            <if test="condition.isCn != null   and condition.isCn !='' ">
+                AND is_cn =#{condition.isCn,jdbcType=VARCHAR}
+            </if>
         </where>
     </select>
 
     <select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer" >
         SELECT  count(*) from domain_dependence
         <where>
-            AND is_valid=1
+
             <if test="condition.domain != null and condition.domain !='' ">
                 AND domain =#{condition.domain,jdbcType=VARCHAR}
             </if>
@@ -115,12 +122,31 @@
             <if test="condition.domainNum != null and condition.domainNum !='' ">
                 AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
             </if>
-            <if test="condition.crossDomain != 2 ">
-                AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+            <if test="condition.isCn != null   and condition.isCn !='' ">
+                AND is_cn =#{condition.isCn,jdbcType=VARCHAR}
             </if>
+            <!--<if test="condition.crossDomain != 2 ">-->
+                <!--AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}-->
+            <!--</if>-->
         </where>
     </select>
 
+    <select id="queryByIdStartAndEnd" parameterType="map" resultMap="domainDependenceResultMap" >
+        <include refid="selectField"/>
+        <where>
+            is_valid=1
+            and id>=#{startId}
+            and #{endId} > id
+        </where>
+    </select>
+
+    <select id="querySpecialCn" parameterType="map" resultMap="domainDependenceResultMap" >
+        <include refid="selectField"/>
+        <where>
+            is_valid=1
+            and is_cn like '%/%'
+        </where>
+    </select>
 
     <select id="queryPageByCondition" parameterType="map" resultMap="domainDependenceResultMap">
     <include refid="selectField"/>
@@ -149,6 +175,9 @@
         </if>
         <if test="condition.crossDomain != 2 ">
             AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+        </if>
+        <if test="condition.isCn != null   and condition.isCn !='' ">
+            AND is_cn =#{condition.isCn,jdbcType=VARCHAR}
         </if>
         limit ${fromNum},${pageSize}
     </where>
@@ -181,10 +210,12 @@
             <if test="po.isValid != null and po.isValid !=''  ">
                 is_valid =#{po.isValid,jdbcType=TINYINT},
             </if>
-            <if test="condition.crossDomain != 2 ">
-                cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+            <!--<if test="po.crossDomain = 2 ">-->
+                <!--cross_domain =#{condition.crossDomain,jdbcType=INTEGER},-->
+            <!--</if>-->
+            <if test="po.isCn != null   and po.isCn !='' ">
+                is_cn =#{po.isCn,jdbcType=VARCHAR}
             </if>
-            update_time=now()
         </set>
         <where>
             AND is_valid=1
@@ -209,8 +240,11 @@
             <if test="condition.domainNum != null and condition.domainNum !='' ">
                 AND domain_num =#{condition.domainNum,jdbcType=INTEGER}
             </if>
-            <if test="condition.crossDomain != 2 ">
-                AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+            <!--<if test="condition.crossDomain != 2 ">-->
+                <!--AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}-->
+            <!--</if>-->
+            <if test="condition.isCn != null   and condition.isCn !='' ">
+                AND is_cn =#{condition.isCn,jdbcType=VARCHAR}
             </if>
         </where>
     </update>
