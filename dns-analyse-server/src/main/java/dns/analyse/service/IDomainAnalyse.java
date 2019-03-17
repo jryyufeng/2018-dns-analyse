@@ -8,4 +8,5 @@ import dns.analyse.dao.model.DomainAnalysePO;
  * Description:
  */
 public interface IDomainAnalyse extends IDnsBaseService<DomainAnalysePO> {
+    DomainAnalysePO queryByDomain(String domain);
 }

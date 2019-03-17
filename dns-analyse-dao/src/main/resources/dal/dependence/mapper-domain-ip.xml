@@ -10,7 +10,7 @@
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="domain_server" jdbcType="VARCHAR" property="domainServer"/>
         <result column="ip" jdbcType="VARCHAR" property="ip"/>
-        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="detail" jdbcType="VARCHAR" property="detail"/>
         <result column="is_vaild" jdbcType="TINYINT" property="isVaild"/>
     </resultMap>
 
@@ -21,7 +21,7 @@
         id,
         domain_server,
         ip,
-        location,
+        detail,
         is_vaild
         FROM  domain_ip
     </sql>
@@ -33,12 +33,12 @@
         INSERT INTO domain_ip (
         domain_server,
         ip,
-        location,
+        detail,
         is_vaild
         ) VALUES (
         #{domainServer,jdbcType=VARCHAR},
         #{ip,jdbcType=VARCHAR},
-        #{location,jdbcType=VARCHAR},
+        #{detail,jdbcType=VARCHAR},
         #{isVaild,jdbcType=TINYINT}
         )
         </insert>
@@ -59,8 +59,8 @@
         <if test="condition.ip != null   and condition.ip !='' ">
         AND ip =#{condition.ip,jdbcType=VARCHAR}
         </if>
-        <if test="condition.location != null   and condition.location !='' ">
-        AND location =#{condition.location,jdbcType=VARCHAR}
+        <if test="condition.detail != null   and condition.detail !='' ">
+        AND detail =#{condition.detail,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null   and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}
@@ -80,8 +80,8 @@
         <if test="condition.ip != null and condition.ip !='' ">
         AND ip =#{condition.ip,jdbcType=VARCHAR}
         </if>
-        <if test="condition.location != null and condition.location !='' ">
-        AND location =#{condition.location,jdbcType=VARCHAR}
+        <if test="condition.detail != null and condition.detail !='' ">
+        AND detail =#{condition.detail,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}
@@ -93,6 +93,7 @@
         <select id="queryPageByCondition" parameterType="map" resultMap="domainIpResultMap">
         <include refid="selectField"/>
         <where>
+            and is_vaild =1
         <if test="condition.id != null and condition.id !='' ">
         AND id =#{condition.id,jdbcType=INTEGER}
         </if>
@@ -102,8 +103,8 @@
         <if test="condition.ip != null and condition.ip !='' ">
         AND ip =#{condition.ip,jdbcType=VARCHAR}
         </if>
-        <if test="condition.location != null and condition.location !='' ">
-        AND location =#{condition.location,jdbcType=VARCHAR}
+        <if test="condition.detail != null and condition.detail !='' ">
+        AND detail =#{condition.detail,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}
@@ -124,8 +125,8 @@
             <if test="po.ip != null and po.ip !=''  ">
                 ip =#{po.ip,jdbcType=VARCHAR},
             </if>
-            <if test="po.location != null and po.location !=''  ">
-                location =#{po.location,jdbcType=VARCHAR},
+            <if test="po.detail != null and po.detail !=''  ">
+                detail =#{po.detail,jdbcType=VARCHAR},
             </if>
             <if test="po.isVaild != null and po.isVaild !=''  ">
                 is_vaild =#{po.isVaild,jdbcType=TINYINT},
@@ -142,8 +143,8 @@
         <if test="condition.ip != null and condition.ip !='' ">
         AND ip =#{condition.ip,jdbcType=VARCHAR}
         </if>
-        <if test="condition.location != null and condition.location !='' ">
-        AND location =#{condition.location,jdbcType=VARCHAR}
+        <if test="condition.detail != null and condition.detail !='' ">
+        AND detail =#{condition.detail,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}

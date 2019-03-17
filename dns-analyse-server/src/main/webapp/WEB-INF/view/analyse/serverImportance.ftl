@@ -6,7 +6,7 @@
     <base id="base" href="${ctx}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>原始故障模型</title>
+    <title>服务器重要度</title>
     <link href="${ctx}/resources/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.jsonview.css"/>
@@ -18,26 +18,13 @@
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table-locale-all.min.js"></script>
     <script src="${ctx}/resources/js/common.js"></script>
-    <script src="${ctx}/resources/js/bootstrap-multiselect.js"/>
+
 </head>
 <body>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#select').multiselect();
-    });
-</script>
 <div id="toolbar">
     <form class="form-inline" role="queryOrderForm">
         <div class="form-group">
             <input type="text" class="form-control" id="domain" name="domain" placeholder="域名"/>
-        </div>
-        <div class="form-group">
-            <label>&nbsp;&nbsp;结构重要度是否存在:</label>
-            <select id="select" style="height: 30px;z-index:auto;">
-                <option value="2">不限</option>
-                <option value="1">是</option>
-                <option value="0">否</option>
-            </select>
         </div>
         <div class="form-group">
             <input type="button" id="searchTraceBtn" class="btn btn-danger icon-search" value="查询"/>
@@ -71,7 +58,6 @@
 </body>
 </html>
 <script>
-    var PATTERN = 'yyyy-MM-dd hh:mm:ss';
     // 搜索
     $('#searchTraceBtn').click(function () {
         var params = {
@@ -79,13 +65,6 @@
         };
         $("#orderDataTable").bootstrapTable('refresh', params);
     });
-
-    $("#orderDetailModal").on("hidden.bs.modal", function () {
-        // 这个#showModal是模态框的id
-        $(this).removeData("bs.modal");
-        $('#orderResultDIV').html("");
-    });
-
 
     $("#orderDataTable").bootstrapTable({
         url: $("#base").attr('href') + '/admin/treeAnalyse/api/list',
@@ -97,13 +76,14 @@
         toolbar: '#toolbar', // 搜索bar
         locales: 'zh-CN',
         sidePagination: 'server',
-        detailView: true,
+        detailView: false,
+
         queryParams: function (params) {
             return {
                 pageNum: (params.offset + params.limit) / params.limit,
                 pageSize: params.limit,
                 domain: $('#domain').val(),
-                tag: $('#select').val()   //新建字段
+                tag: 1  //新建字段
             }
         },
         responseHandler: function (res) {
@@ -118,12 +98,12 @@
                 title: '域名'
             },
             {
-                field: 'mcsCount',
+                field: 'server',
                 title: '割集数目'
             },
             {
-                field: 'mpsCount',
-                title: '路集数目'
+                field: 'importance',
+                title: '重要度'
             }
 //            {
 //                field: 'createdTime',
@@ -132,48 +112,7 @@
 //                    return new Date(value).format(PATTERN);
 //                }
 //            }
-        ],
-        onExpandRow: function (index,row,$detail) {
-            loadOrderPayTable(index, row,$detail);
-        }
+        ]
     });
-    var loadOrderPayTable = function (index, row, $detail) {
-        console.log($detail);
-        var payTable = $detail.html('<table></table>').find('table');
-        ///////////
-        $(payTable).bootstrapTable({
-            url: '/api/monitor/alive',
-            cache: false,
-            pagination: true,
-            locales: 'zh-CN',
-            sidePagination: 'server',
-            detailView: false,
-            responseHandler: function (res) {
-                var rows =[row];
-                console.log(rows);
-                return {
-                    "rows": rows,
-                    "total": 1
-                }
-            },
-            columns: [
-                {
-                    field: 'mcs',
-                    title: '割集详情'
-//                    formatter: function (value) {
-//                        return '<xmp>' + formatXml(value) + '</xmp>';
-//                    }
-                },
-                {
-                    field: 'mps',
-                    title: '路集详情'
-                },
-                {
-                    field: 'structImportance',
-                    title: '服务器结构重要度'
-                }
-            ]
-        });
-    };
 
 </script>

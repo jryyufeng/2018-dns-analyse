@@ -21,4 +21,9 @@ public class DomainAnalyseServiceImpl extends DnsServiceImpl<DomainAnalysePO> im
     protected BaseDAO getEntityDao() {
         return domainAnalyseDAO;
     }
+
+    @Override
+    public DomainAnalysePO queryByDomain(String domain){
+        return domainAnalyseDAO.queryByDomain(domain);
+    }
 }

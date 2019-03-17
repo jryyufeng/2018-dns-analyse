@@ -166,7 +166,7 @@
             pagination: true,
             locales: 'zh-CN',
             sidePagination: 'server',
-            detailView: true,
+            detailView: false,
             responseHandler: function (res) {
                 var rows =[row];
                 console.log(rows);

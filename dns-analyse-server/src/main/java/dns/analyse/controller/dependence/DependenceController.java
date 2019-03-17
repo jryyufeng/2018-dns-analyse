@@ -1,9 +1,16 @@
 package dns.analyse.controller.dependence;
 
+import dns.analyse.dao.model.DomainCdnPO;
 import dns.analyse.dao.model.DomainDependencePO;
+import dns.analyse.dao.model.DomainIpPO;
+import dns.analyse.model.CdnServerInfoVO;
 import dns.analyse.model.DomainDependenceVO;
+import dns.analyse.service.IDnsDomainCdnService;
 import dns.analyse.service.IDnsDomainDependenceService;
+import dns.analyse.service.IDnsDomainIpService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.python.core.util.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -25,6 +35,10 @@ import java.util.List;
 public class DependenceController {
     @Autowired
     IDnsDomainDependenceService dnsDomainDependenceService;
+    @Autowired
+    IDnsDomainCdnService dnsDomainCdnService;
+    @Autowired
+    IDnsDomainIpService dnsDomainIpService;
 
     @GetMapping("/list")
     @ResponseBody
@@ -38,8 +52,34 @@ public class DependenceController {
                 .pageSize(pageSize)
                 .build();
     }
-//    @GetMapping("/cdnList")
-//    @ResponseBody
-//    public
+    @GetMapping("/cdnServer")
+    @ResponseBody
+    public List<CdnServerInfoVO> getcdnServer(String domain){
+        if(StringUtils.isBlank(domain)){
+            return null;
+        }
+        List<DomainCdnPO> pos = dnsDomainCdnService.queryAllByCondition(DomainCdnPO
+                .builder()
+                .domain(domain)
+                .build());
+        List<CdnServerInfoVO> vos = new ArrayList<>();
+        pos.forEach(t->{
+            String ipDetail = "";
+            if(StringUtils.isNotBlank(t.getCdnIp()) && !Objects.equals(" ",t.getCdnIp())){
+                List<DomainIpPO> domainIpPOList = dnsDomainIpService.queryAllByCondition(DomainIpPO.builder()
+                        .ip(t.getCdnIp()).build());
+                ipDetail = Optional.ofNullable(domainIpPOList).map(t1->t1.get(0).getDetail()).orElse("服务器信息未知");
+            }
+
+            vos.add(CdnServerInfoVO.builder()
+                    .server(t.getCdnServer())
+                    .serverIp(Optional.ofNullable(t.getCdnIp()).orElse("ip未获取"))
+                    .serverDetail(ipDetail)
+                    .build());
+
+        });
+        return vos;
+
+    }
 
 }

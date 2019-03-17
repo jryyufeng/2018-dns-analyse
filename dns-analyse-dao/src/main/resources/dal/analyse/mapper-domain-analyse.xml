@@ -66,6 +66,13 @@
         </where>
     </select>
 
+    <select id="queryByDomain"  parameterType="map" resultMap="domainAnalyseResultMap">
+        <include refid="selectField"/>
+        <where>
+            domain = #{domain}
+        </where>
+    </select>
+
     <select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer" >
         SELECT  count(*) from domain_analyse
         <where>

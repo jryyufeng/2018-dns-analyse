@@ -1,5 +1,7 @@
 package dns.analyse.dao.mapper;
 
+import dns.analyse.dao.model.DomainAnalysePO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,5 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DomainAnalyseDAO extends BaseDAO<DomainAnalyseDAO,Integer> {
-
+    DomainAnalysePO queryByDomain(@Param("domain") String domain);
 }

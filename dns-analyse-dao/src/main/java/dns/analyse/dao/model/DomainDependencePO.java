@@ -48,4 +48,6 @@ public class DomainDependencePO {
 
     private String isCn;
 
+    private Integer isCdn;
+
 }

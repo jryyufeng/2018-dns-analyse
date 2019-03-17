@@ -20,7 +20,7 @@ public class DomainIpPO {
 
     public static String ID_COLUMN_NAME="id";
     private Long id;
-    private Integer isValid;
+    private Integer isVaild;
 
     /**
      * 域名服务器
@@ -33,7 +33,8 @@ public class DomainIpPO {
     /**
      * 服务器位置
      */
-    private String location;
+    private String detail;
+
 
 
 }

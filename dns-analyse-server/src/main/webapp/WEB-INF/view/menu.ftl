@@ -55,12 +55,6 @@
                     <span class="menu-text"> 故障原始模型 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/analyse/list');">
-                <a href="javascript:void(0);">
-                    <i class="icon-arrow-right"></i>
-                    <span class="menu-text"> 服务器重要度查询 </span>
-                </a>
-            </li>
             <li onclick="loadPage('/admin/view/analyse/modelAnalyse');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
