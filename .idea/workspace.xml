@@ -7,52 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17fb1cb5-1172-414b-909b-34ff2aef1d49" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_27_0_1_jre.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_2_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DomainIpController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/AnalyseServerInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/CdnServerInfoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/DomainIpVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/analyse/serverImportance.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/cdnDependence.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/resources/admin/assets/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/resources/admin/assets/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/resources/admin/assets/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/resources/admin/assets/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/dns_analyse_server_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/dns_analyse_server_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/dns-analyse-dao.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/dns-analyse-dao.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/mapper/DomainAnalyseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/mapper/DomainAnalyseDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainDependencePO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainDependencePO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainIpPO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainIpPO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/analyse/mapper-domain-analyse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/analyse/mapper-domain-analyse.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/dependence/mapper-domain-dependence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/dependence/mapper-domain-dependence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/dependence/mapper-domain-ip.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/dependence/mapper-domain-ip.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/dns-analyse-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/dns-analyse-server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/treeAnalyse/TreeAnalyseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/treeAnalyse/TreeAnalyseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/IDomainAnalyse.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/IDomainAnalyse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/impl/DomainAnalyseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/impl/DomainAnalyseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/analyse/list.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/analyse/list.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/analyse/modelAnalyse.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/analyse/modelAnalyse.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/ipInfo.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/ipInfo.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/menu.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/menu.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="dns-analyse.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,14 +33,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TreeAnalyseController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/treeAnalyse/TreeAnalyseController.java">
+      <file leaf-file-name="list.ftl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="56">
-              <caret line="133" column="5" lean-forward="true" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
+            <state relative-caret-position="188">
+              <caret line="280" column="35" lean-forward="true" selection-start-line="280" selection-start-column="35" selection-end-line="280" selection-end-column="35" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DependenceController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="96" selection-start-line="96" selection-end-line="96" />
             </state>
           </provider>
         </entry>
@@ -152,7 +118,6 @@
         <option value="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/dependence/mapper-domain-dependence.xml" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/CdnServerInfoVO.java" />
         <option value="$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainIpPO.java" />
-        <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/DomainIpVO.java" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DomainIpController.java" />
         <option value="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/dependence/mapper-domain-ip.xml" />
@@ -169,10 +134,11 @@
         <option value="$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/analyse/mapper-domain-analyse.xml" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/impl/DomainAnalyseServiceImpl.java" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/analyse/modelAnalyse.ftl" />
-        <option value="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/cdnDependence.ftl" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/ipInfo.ftl" />
         <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/treeAnalyse/TreeAnalyseController.java" />
+        <option value="$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java" />
+        <option value="$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl" />
       </list>
     </option>
   </component>
@@ -229,6 +195,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -292,12 +260,59 @@
               <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="dependence" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="dns-analyse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dns-analyse" type="462c0819:PsiDirectoryNode" />
+              <item name="dns-analyse-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dns-analyse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dns-analyse" type="462c0819:PsiDirectoryNode" />
+              <item name="dns-analyse-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dns-analyse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dns-analyse" type="462c0819:PsiDirectoryNode" />
+              <item name="dns-analyse-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dns-analyse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dns-analyse" type="462c0819:PsiDirectoryNode" />
+              <item name="dns-analyse-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="dependence" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dns-analyse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dns-analyse" type="462c0819:PsiDirectoryNode" />
+              <item name="dns-analyse-server" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -787,7 +802,8 @@
       <workItem from="1552287575746" duration="249000" />
       <workItem from="1552303450591" duration="1902000" />
       <workItem from="1552620090096" duration="22616000" />
-      <workItem from="1552809796595" duration="10703000" />
+      <workItem from="1552809796595" duration="10878000" />
+      <workItem from="1553172804623" duration="2584000" />
     </task>
     <task id="LOCAL-00001" summary="commit1">
       <created>1543730281833</created>
@@ -880,7 +896,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552198307608</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="除核心域解析，无缓存，无日志">
+      <created>1552823282117</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1552823282120</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -916,7 +939,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205019000" />
+    <option name="totallyTimeSpent" value="207778000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -941,11 +964,11 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="right" id="Capture Analysis" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49570817" weight="0.32668328" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3283582" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49371633" visible="true" weight="0.35407725" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49371633" visible="true" weight="0.3590844" />
       <window_info id="Web" order="3" sideWeight="0.50628364" side_tool="true" weight="0.24964234" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="4" side_tool="true" />
@@ -985,7 +1008,8 @@
     <MESSAGE value="freemark运营端" />
     <MESSAGE value="freemark前端页面框架" />
     <MESSAGE value="详情分析，类型分析" />
-    <option name="LAST_COMMIT_MESSAGE" value="详情分析，类型分析" />
+    <MESSAGE value="除核心域解析，无缓存，无日志" />
+    <option name="LAST_COMMIT_MESSAGE" value="除核心域解析，无缓存，无日志" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1006,7 +1030,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="73" />
+      <option name="time" value="76" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1014,69 +1038,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/index.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="113" column="98" selection-start-line="113" selection-start-column="98" selection-end-line="113" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/localOperate/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="29" column="35" lean-forward="true" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/IDomainDetailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-dao/src/main/resources/dal/applicationContext-db-slt.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="16" column="98" selection-start-line="16" selection-start-column="98" selection-end-line="16" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/mapper/DomainDependenceDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/test/java/dns/analyse/dao/DomainDependenceDAOTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="214" column="56" selection-start-line="214" selection-start-column="56" selection-end-line="214" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/impl/DomainDetailServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="43" column="23" lean-forward="true" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/service/impl/DnsDomainIpServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="15" column="66" selection-start-line="15" selection-start-column="66" selection-end-line="15" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainDependencePO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainCdnPO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1139,20 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/CdnServerInfoVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="47" column="43" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/AnalyseServerInfoVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1199,8 +1146,8 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/dns-analyse-server/pom.xml">
-      <provider editor-type-id="YarmPluginDependencyUpdater" />
       <provider editor-type-id="YarmPluginDependencyAnalyzer" />
+      <provider editor-type-id="YarmPluginDependencyUpdater" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="110" column="57" selection-start-line="110" selection-start-column="57" selection-end-line="110" selection-end-column="57" />
@@ -1211,8 +1158,8 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider editor-type-id="YarmPluginDependencyUpdater" />
       <provider editor-type-id="YarmPluginDependencyAnalyzer" />
+      <provider editor-type-id="YarmPluginDependencyUpdater" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="350" column="42" selection-start-line="350" selection-start-column="42" selection-end-line="350" selection-end-column="42" />
@@ -1265,17 +1212,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
-          <folding>
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-web/4.3.19.RELEASE/spring-web-4.3.19.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="213" selection-start-line="213" selection-end-line="213" />
         </state>
       </provider>
     </entry>
@@ -1314,24 +1250,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/main/mainView.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="74" column="26" lean-forward="true" selection-start-line="70" selection-start-column="24" selection-end-line="74" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/resources/js/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="1858" column="2" selection-start-line="1858" selection-start-column="2" selection-end-line="1858" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1034">
-          <caret line="168" column="30" lean-forward="true" selection-start-line="168" selection-start-column="12" selection-end-line="168" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1353,19 +1275,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="623">
           <caret line="434" column="18" lean-forward="true" selection-start-line="434" selection-start-column="18" selection-end-line="434" selection-end-column="18" />
-          <folding>
-            <element signature="e#1322#1346#0#HTML" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#style#0;n#table#1;n#div#0;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#7580#9538#0#HTML" />
-            <element signature="e#9572#12752#0#HTML" />
-            <element signature="n#script#2;n#!!top" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1379,13 +1288,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/resources/js/jquery.jsonview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-449">
+          <caret line="197" column="9" selection-start-line="197" selection-start-column="9" selection-end-line="197" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/treeAnalyse/TreeAnalyseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="133" column="5" lean-forward="true" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
+        <state relative-caret-position="266">
+          <caret line="147" column="11" selection-start-line="147" selection-start-column="11" selection-end-line="147" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dns-analyse-dao/src/main/java/dns/analyse/dao/model/DomainDetailPO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/model/CdnServerInfoVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/main/mainView.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="178" column="15" lean-forward="true" selection-start-line="172" selection-start-column="20" selection-end-line="178" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/webapp/WEB-INF/view/dependence/list.ftl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="280" column="35" lean-forward="true" selection-start-line="280" selection-start-column="35" selection-end-line="280" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-web/4.3.19.RELEASE/spring-web-4.3.19.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-webmvc/4.3.19.RELEASE/spring-webmvc-4.3.19.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="121" selection-start-line="121" selection-end-line="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-webmvc/4.3.19.RELEASE/spring-webmvc-4.3.19.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="771" selection-start-line="771" selection-end-line="771" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-webmvc/4.3.19.RELEASE/spring-webmvc-4.3.19.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-webmvc/4.3.19.RELEASE/spring-webmvc-4.3.19.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="910" selection-start-line="910" selection-end-line="910" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-webmvc/4.3.19.RELEASE/spring-webmvc-4.3.19.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="847" selection-start-line="847" selection-end-line="847" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-web/4.3.19.RELEASE/spring-web-4.3.19.RELEASE-sources.jar!/org/springframework/web/filter/CharacterEncodingFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="197" selection-start-line="197" selection-end-line="197" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.m3/repository/org/springframework/spring-web/4.3.19.RELEASE/spring-web-4.3.19.RELEASE-sources.jar!/org/springframework/web/filter/OncePerRequestFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-853">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dns-analyse-server/src/main/java/dns/analyse/controller/dependence/DependenceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="96" selection-start-line="96" selection-end-line="96" />
         </state>
       </provider>
     </entry>

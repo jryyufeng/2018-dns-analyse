@@ -2,13 +2,16 @@ package dns.analyse.controller.dependence;
 
 import dns.analyse.dao.model.DomainCdnPO;
 import dns.analyse.dao.model.DomainDependencePO;
+import dns.analyse.dao.model.DomainDetailPO;
 import dns.analyse.dao.model.DomainIpPO;
 import dns.analyse.model.CdnServerInfoVO;
 import dns.analyse.model.DomainDependenceVO;
 import dns.analyse.service.IDnsDomainCdnService;
 import dns.analyse.service.IDnsDomainDependenceService;
 import dns.analyse.service.IDnsDomainIpService;
+import dns.analyse.service.IDomainDetailService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.python.core.util.StringUtil;
 import org.springframework.beans.BeanUtils;
@@ -39,7 +42,8 @@ public class DependenceController {
     IDnsDomainCdnService dnsDomainCdnService;
     @Autowired
     IDnsDomainIpService dnsDomainIpService;
-
+    @Autowired
+    IDomainDetailService domainDetailService;
     @GetMapping("/list")
     @ResponseBody
     public DomainDependenceVO getList(DomainDependencePO vo,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize){
@@ -80,6 +84,17 @@ public class DependenceController {
         });
         return vos;
 
+    }
+    @GetMapping("/getSubDetail")
+    @ResponseBody
+    public DomainDetailPO getSubDetail(String domain){
+        List<DomainDetailPO> pos = domainDetailService.queryAllByCondition(DomainDetailPO.builder().domain(domain).build());
+        if(CollectionUtils.isEmpty(pos)){
+            return null;
+        }
+        DomainDetailPO po = pos.get(0);
+        po.setSubnetDetial("");
+        return po;
     }
 
 }

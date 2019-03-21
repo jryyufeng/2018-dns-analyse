@@ -19,6 +19,14 @@
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table-locale-all.min.js"></script>
     <script src="${ctx}/resources/js/common.js"></script>
     <script src="${ctx}/resources/js/bootstrap-multiselect.js"/>
+    <style>
+        pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+        .string { color: green; }        /*字符串的样式*/
+        .number { color: darkorange; }    /*数字的样式*/
+        .boolean { color: blue; }        /*布尔型数据的样式*/
+        .null { color: magenta; }        /*null值的样式*/
+        .key { color: red; }            /*key值的样式*/
+    </style>
 </head>
 <body>
 <script type="text/javascript">
@@ -63,7 +71,9 @@
             </div>
             <div class="modal-body">
                 <div id="orderResultDIV"
-                     style="font-size:10pt;word-wrap:break-word;word-break:break-all;overflow-y: auto;"></div>
+                     style="font-size:10pt;word-wrap:break-word;word-break:break-all;overflow-y: auto;">
+
+                </div>
             </div>
         </div>
     </div>
@@ -116,7 +126,10 @@
         columns: [
             {
                 field: 'domain',
-                title: '域名'
+                title: '域名',
+                formatter: function (value) {
+                    return '<a href="javascript:void(0);" onclick="showOrderAllDetail(\'' + value + '\')">' + value + '</a>';
+                }
             },
             {
                 field: 'domainTree',
@@ -257,5 +270,47 @@
         return output.join('');
     }
 
+    function showOrderAllDetail(domain) {
+        $('#orderDetailModal').modal('show');
+        var url = '/admin/dependence/api/cdnServer?domain=' + domain;
+        var result = HTTP.get(url);
+        $.ajax({
+            type : 'get',
+            async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : $("#base").attr('href') + '/admin/dependence/api/getSubDetail',
+            data : {domain:domain},
+            dataType : "json", //返回数据形式为json
+            success : function(result) {
+                $('#orderResultDIV').JSONView(result);
+                },
+            error : function(msg) {
+                alert("图表请求Ip分类数据失败!"+msg);
+                }
+            });
 
+    }
+
+    function syntaxHighlight(json) {
+        if (typeof json != 'string') {
+            json = JSON.stringify(json, undefined, 2);
+        }
+        json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+                function(match) {
+                    var cls = 'number';
+                    if (/^"/.test(match)) {
+                        if (/:$/.test(match)) {
+                            cls = 'key';
+                        } else {
+                            cls = 'string';
+                        }
+                    } else if (/true|false/.test(match)) {
+                        cls = 'boolean';
+                    } else if (/null/.test(match)) {
+                        cls = 'null';
+                    }
+                    return '<span class="' + cls + '">' + match + '</span>';
+                }
+        );
+    }
 </script>
