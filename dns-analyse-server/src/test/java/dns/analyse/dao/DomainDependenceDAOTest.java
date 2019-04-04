@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import com.alibaba.fastjson.JSON;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.mapper.DomainDetailDAO;
+import dns.analyse.dao.model.DomainAnalysePO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
 import dns.analyse.dao.model.DomainDetailPO;
@@ -20,6 +21,7 @@ import dns.analyse.service.IDomainDetailService;
 import dns.analyse.service.processors.CreateDomainDetailProcess;
 import dns.analyse.service.tools.JedisUtil;
 
+import dns.analyse.service.tools.LogAnnotation;
 import jnr.ffi.annotations.In;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +31,7 @@ import org.python.util.PythonInterpreter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.test.annotation.Rollback;
 
@@ -71,7 +74,7 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     @Test
     public void queryById() {
         LOGGER.warn("1234");
-        List<DomainDependencePO> po=domainDependenceDAO.queryByIds(Arrays.asList(1,2));
+        List<DomainDependencePO> po=domainDependenceDAO.queryByIds(Arrays.asList(1));
         System.out.println("po=="+ JSON.toJSON(po));
         ////Assert.assertTrue(po != null);
     }
@@ -154,7 +157,7 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     @Test
     //@Rollback(false)  // 避免事务回滚
     public void updateByCondition(){
-
+        //domainDependenceDAO.queryAllByCondition(DomainAnalysePO.builder());
         DomainDependencePO domainDependencePO=new DomainDependencePO();
         domainDependencePO.setDomain("Domain");
         domainDependencePO.setDomainTree("DomainTree");
@@ -212,7 +215,10 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     public void testDetail(){
         //包含开始，不包含结尾
         //500000，550000补数据
-        domainDetailService.detailHandler(950000,1000000);
+        //for(int i=0;i<91;i++) {
+            domainDetailService.detailHandler(950000,1000000);
+            System.out.println("\n=========================================\n");
+       // }
 
         //List<DomainDependencePO> po = domainDependenceDAO.queryByIdStartAndEnd(1,10);
     }
@@ -220,7 +226,11 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     @Rollback(false)
     public void testCache(){
         //display(dnsDomainDependenceService.getDOMAIN_NUM(1));
-        dnsDomainDependenceService.setDomainType(1,100000);
+        //for(int i=0;i<91;i++){
+            dnsDomainDependenceService.setDomainType(950000,1000000);
+            System.out.println("\n-----------------------------------\n");
+        //}
+
 
 
     }
@@ -229,6 +239,12 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     public void getTypeNum(){
         List<DomainDependencePO> pos = dnsDomainDependenceService.queryAllByCondition(new DomainDependencePO());
 
+    }
+
+    @Test
+    @LogAnnotation
+    public void testLog1(){
+        System.out.println("111");
     }
 
 

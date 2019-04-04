@@ -98,8 +98,8 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
     public Boolean setDomainType(Integer start,Integer end){
         List<DomainDependencePO> pos = domainDependenceDAO.queryByIdStartAndEnd(start,end);
         pos.forEach(t->{
-            //String[] domains = t.getDomain().split("\\.");
-            String isCn = t.getIsCn();
+            String[] domains = t.getDomain().split("\\.");
+            String isCn = domains[domains.length-1];
             if(isCn.contains("/")){
                 isCn = isCn.split("/")[0];
             }

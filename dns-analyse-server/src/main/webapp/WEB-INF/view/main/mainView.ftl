@@ -29,11 +29,11 @@
 
     <div class="form-group">
         <div>
-            <div class="div-inline" id="main" style="width: 600px;height:400px; float:left;"></div>
-            <div class="div-inline" id="main1" style="width: 600px;height:400px; float:left;"></div>
+            <div class="div-inline" id="main" style="width: 500px;height:400px; float:left;"></div>
+            <div class="div-inline" id="main1" style="width: 500px;height:400px; float:left;"></div>
         </div>
         <div>
-            <div class="div-inline" id="main2" style="width: 600px;height:400px; float:left;"></div>
+            <div class="div-inline" id="main2" style="width: 500px;height:400px; float:left;"></div>
             <label>&nbsp;&nbsp;故障解析比例</label>
             <label>&nbsp;&nbsp;ip地址占比</label>
             <label>&nbsp;&nbsp;使用cdn域名占比</label>

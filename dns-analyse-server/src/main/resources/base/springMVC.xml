@@ -31,6 +31,7 @@
     <!-- aspectj注解支持 -->
     <aop:aspectj-autoproxy/>
 
+    <aop:config proxy-target-class="true"/>
     <!--定时任务支持-->
     <task:annotation-driven />
 

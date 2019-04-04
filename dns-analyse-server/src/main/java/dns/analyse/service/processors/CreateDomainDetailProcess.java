@@ -16,10 +16,14 @@ public class CreateDomainDetailProcess {
     private static final String TEXT ="text";
     public static List<DomainNetDetailPO> getObjectByXml(String xml){
         Document doc;
+        String xml1 = xml;
+        if(Objects.equals(xml1,"None")){
+            xml1 = "<root>none.com</root>";
+        }
         try{
-            doc = DocumentHelper.parseText(xml);
+            doc = DocumentHelper.parseText(xml1);
         }catch (DocumentException e) {
-            LOGGER.error("获取域名依赖详情信息xml转换失败,xml:{}",xml);
+            LOGGER.error("获取域名依赖详情信息xml转换失败,xml:{}",xml1);
             e.printStackTrace();
             return null;
         }

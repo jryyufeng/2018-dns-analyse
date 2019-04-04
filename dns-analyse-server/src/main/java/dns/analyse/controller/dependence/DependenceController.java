@@ -10,6 +10,7 @@ import dns.analyse.service.IDnsDomainCdnService;
 import dns.analyse.service.IDnsDomainDependenceService;
 import dns.analyse.service.IDnsDomainIpService;
 import dns.analyse.service.IDomainDetailService;
+import dns.analyse.service.tools.LogAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +45,9 @@ public class DependenceController {
     IDnsDomainIpService dnsDomainIpService;
     @Autowired
     IDomainDetailService domainDetailService;
+
     @GetMapping("/list")
+    @LogAnnotation(title = "依赖信息",action = "获取依赖信息列表")
     @ResponseBody
     public DomainDependenceVO getList(DomainDependencePO vo,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize){
         List<DomainDependencePO> list = dnsDomainDependenceService.queryPageByCondition(vo,pageNum,pageSize);
