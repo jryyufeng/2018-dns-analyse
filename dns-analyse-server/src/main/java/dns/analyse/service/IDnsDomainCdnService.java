@@ -43,4 +43,5 @@ public interface IDnsDomainCdnService {
      * @return
      */
     List<DomainCdnPO> queryPageByCondition(DomainCdnPO condition, Integer offset, Integer pageSize);
+    int getCDN_NUM(String cdn);
 }

@@ -459,12 +459,15 @@
             }
         });
         mps.forEach(function(item,index){
+
             if(item.indexOf(server) != -1){
                 newMps.push(item);
             }
         });
+        $('#orderDataTable4').bootstrapTable('destroy');
         $("#orderDataTable4").bootstrapTable({
             data:newMcs,
+            silent: true,
             //ajaxOptions: {businessSerialNum: serialNum},
             columns: [
                 {
@@ -485,8 +488,10 @@
                 $("#mcsTitle").text(text);
             }
         });
+        $('#orderDataTable5').bootstrapTable('destroy');
         $("#orderDataTable5").bootstrapTable({
             data:newMps,
+            cache:false,
             //ajaxOptions: {businessSerialNum: serialNum},
             columns: [
                 {

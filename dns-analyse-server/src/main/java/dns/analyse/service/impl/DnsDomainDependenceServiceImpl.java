@@ -4,13 +4,17 @@ import dns.analyse.Enum.DomainTypeEnum;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.service.IDnsDomainDependenceService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -25,6 +29,7 @@ import java.util.stream.Collectors;
  */
 @Service(value = "dnsDomainDependenceService")
 public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceService {
+    private static final Logger LOGGER = LogManager.getLogger(DnsDomainDependenceServiceImpl.class.getName());
     @Autowired
     DomainDependenceDAO domainDependenceDAO;
 
@@ -127,8 +132,67 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
         return null;
     }
 
+    @Override
+    public int getDOMAIN_TYPE_NUM(String type){
+        try {
+            Integer count = DOMAIN_TYPE_NUM_CACHE.get(type);
+            return count;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
+    @Override
+    public int getDOMAIN_NUMTYPE(String numType){
+        try {
+            Integer count = DOMAIN_NUMTYPE_CACHE.get(numType);
+            return count;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    private LoadingCache<String,Integer> DOMAIN_NUMTYPE_CACHE = CacheBuilder.newBuilder()
+            .maximumSize(1024)
+            .expireAfterAccess(30,TimeUnit.DAYS)
+            .build(new CacheLoader<String, Integer>() {
+                @Override
+                public Integer load(String s) throws Exception {
+                    int res =  0;
+                    switch (s){
+                        case "=0":
+                            res = domainDependenceDAO.queryNumByDomainNum(-1,0);
+                            break;
+                        case "1-3":
+                            res = domainDependenceDAO.queryNumByDomainNum(0,3);
+                            break;
+                        case "3-5":
+                            res = domainDependenceDAO.queryNumByDomainNum(3,5);
+                            break;
+                        case "5-10":
+                            res = domainDependenceDAO.queryNumByDomainNum(5,10);
+                            break;
+                        case "10-15":
+                            res = domainDependenceDAO.queryNumByDomainNum(10,15);
+                            break;
+                            default:
+                                res = domainDependenceDAO.queryNumByDomainNum(15,1000);
 
+                    }
+                    return res;
+                }
+            });
+    private LoadingCache<String,Integer> DOMAIN_TYPE_NUM_CACHE = CacheBuilder.newBuilder()
+            .maximumSize(1024)
+            .expireAfterAccess(30,TimeUnit.DAYS)
+            .build(new CacheLoader<String, Integer>() {
+                @Override
+                public Integer load(String s) throws Exception {
+                   Integer res =  domainDependenceDAO.queryNumByType(s);
+                    return res;
+                }
+            });
     /**
      * key:id
      * value:Integer
@@ -159,7 +223,7 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
 
     @PostConstruct
     public void initCache() {
-
+        //初始化跨域类型缓存
         try {
             DOMAIN_NUM_CACHE.get(DomainTypeEnum.ALL.getCode());
             DOMAIN_NUM_CACHE.get(DomainTypeEnum.IS_CROSS.getCode());
@@ -168,6 +232,23 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        //初始化子域数量类型缓存
+        Arrays.asList("=0","1-3","3-5","5-10","10-15",">15").forEach(t->{
+            try{
+                DOMAIN_NUMTYPE_CACHE.get(t);
+            }catch (ExecutionException e){
+                LOGGER.error("分类获取不同子域数量域名失败",e);
+            }
+
+        });
+        //初始化顶级域类型缓存
+        Arrays.asList("cn","com","org","jp","other").forEach(t->{
+            try {
+                DOMAIN_TYPE_NUM_CACHE.get(t);
+            }catch (ExecutionException e){
+                LOGGER.error("初始化顶级域类型缓存失败",e);
+            }
+        });
 
     }
 

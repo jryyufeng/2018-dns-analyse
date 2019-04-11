@@ -3,10 +3,15 @@ package dns.analyse.service.impl;
 import dns.analyse.dao.mapper.DomainCdnDAO;
 import dns.analyse.dao.model.DomainCdnPO;
 import dns.analyse.service.IDnsDomainCdnService;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -73,6 +78,30 @@ public class DnsDomainCdnServiceImpl implements IDnsDomainCdnService {
     public List<DomainCdnPO> queryPageByCondition(DomainCdnPO condition, Integer offset, Integer pageSize) {
         return domainCdnDAO.queryPageByCondition(condition, (offset - 1) * pageSize, pageSize);
     }
+
+    @Override
+    public int getCDN_NUM(String cdn){
+        try {
+            Integer count = CDN_NUM_CACHE.get(cdn);
+            return count;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private LoadingCache<String, Integer> CDN_NUM_CACHE = CacheBuilder.newBuilder()
+            .maximumSize(1024)
+            .expireAfterAccess(30, TimeUnit.DAYS)
+            .build(new CacheLoader<String, Integer>() {
+                       @Override
+                       public Integer load(String cdn) {
+                           Integer sa = domainCdnDAO.queryConutByDisTinct(cdn);
+                           return sa;
+                       }
+                   }
+            );
+
 
 
 }

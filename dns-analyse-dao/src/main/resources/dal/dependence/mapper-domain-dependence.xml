@@ -277,5 +277,13 @@
         AND is_valid=1
     </select>
 
+    <select id="queryNumByType" parameterType="map" resultType="java.lang.Integer">
+        select count(*) from domain_dependence where is_cn like #{type}
+    </select>
+
+    <select id="queryNumByDomainNum" parameterType="map" resultType="java.lang.Integer">
+        select count(*) from domain_dependence where domain_num > #{least} and #{maximum} >= domain_num
+    </select>
+
 
 </mapper>

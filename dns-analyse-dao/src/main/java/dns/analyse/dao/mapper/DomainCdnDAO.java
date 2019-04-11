@@ -17,5 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DomainCdnDAO extends  BaseDAO<DomainCdnPO,Integer>  {
 
+    int queryConutByDisTinct (@Param("item") String item);
 
 }

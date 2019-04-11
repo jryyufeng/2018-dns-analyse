@@ -22,4 +22,8 @@ public interface DomainDependenceDAO extends  BaseDAO<DomainDependencePO,Integer
 
     List<DomainDependencePO> querySpecialCn();
 
+    int queryNumByType(@Param("type") String type);
+
+    int queryNumByDomainNum(@Param("least") Integer least,@Param("maximum") Integer maximum);
+
 }

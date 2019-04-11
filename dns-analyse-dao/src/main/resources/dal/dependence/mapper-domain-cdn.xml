@@ -150,6 +150,10 @@
         AND is_valid=1
     </select>
 
+    <select id="queryConutByDisTinct"  parameterType="map" resultType="java.lang.Integer">
+      select count(*) from (SELECT distinct ${item} from domain_cdn) as a
+    </select>
+
 
 
 </mapper>

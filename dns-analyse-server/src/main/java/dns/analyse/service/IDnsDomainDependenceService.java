@@ -51,4 +51,8 @@ public interface IDnsDomainDependenceService {
     Boolean setDomainType(Integer start,Integer end);
 
     Map<String,Integer>  getDomainProportion();
+
+    int getDOMAIN_TYPE_NUM(String type);
+
+    int getDOMAIN_NUMTYPE(String numType);
 }

@@ -16,6 +16,7 @@ import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.AbstractJunitTest;
 import dns.analyse.dao.model.DomainDetailPO;
 import dns.analyse.dao.model.DomainNetDetailPO;
+import dns.analyse.service.IDnsDomainCdnService;
 import dns.analyse.service.IDnsDomainDependenceService;
 import dns.analyse.service.IDomainDetailService;
 import dns.analyse.service.processors.CreateDomainDetailProcess;
@@ -54,6 +55,8 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private IDomainDetailService domainDetailService;
     @Resource
     private IDnsDomainDependenceService dnsDomainDependenceService;
+    @Autowired
+    private IDnsDomainCdnService dnsDomainCdnService;
     @Test
     @Rollback(false)  // 避免事务回滚
     public void insert() {
@@ -245,6 +248,11 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     @LogAnnotation
     public void testLog1(){
         System.out.println("111");
+    }
+
+    @Test
+    public void testCdnCache(){
+        display(dnsDomainDependenceService.getDOMAIN_NUMTYPE("=0"));
     }
 
 
