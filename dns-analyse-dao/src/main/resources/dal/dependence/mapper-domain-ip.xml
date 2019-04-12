@@ -11,6 +11,7 @@
         <result column="domain_server" jdbcType="VARCHAR" property="domainServer"/>
         <result column="ip" jdbcType="VARCHAR" property="ip"/>
         <result column="detail" jdbcType="VARCHAR" property="detail"/>
+        <result column="region" jdbcType="VARCHAR" property="region"/>
         <result column="is_vaild" jdbcType="TINYINT" property="isVaild"/>
     </resultMap>
 
@@ -22,6 +23,7 @@
         domain_server,
         ip,
         detail,
+        region,
         is_vaild
         FROM  domain_ip
     </sql>
@@ -34,11 +36,13 @@
         domain_server,
         ip,
         detail,
+        region,
         is_vaild
         ) VALUES (
         #{domainServer,jdbcType=VARCHAR},
         #{ip,jdbcType=VARCHAR},
         #{detail,jdbcType=VARCHAR},
+        #{region,jdbcType=VARCHAR},
         #{isVaild,jdbcType=TINYINT}
         )
         </insert>
@@ -46,6 +50,11 @@
         <include refid="selectField"/>
         WHERE id = #{id}
         </select>
+
+    <select id="queryByStartAndEnd" resultMap="domainIpResultMap">
+        <include refid="selectField"/>
+        WHERE ip not like "ip未知" and id >= #{start} and #{end} > id
+    </select>
 
         <select id="queryAllByCondition"  parameterType="map" resultMap="domainIpResultMap">
         <include refid="selectField"/>
@@ -61,6 +70,9 @@
         </if>
         <if test="condition.detail != null   and condition.detail !='' ">
         AND detail =#{condition.detail,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.region != null   and condition.region !='' ">
+            AND region =#{condition.region,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null   and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}
@@ -82,6 +94,9 @@
         </if>
         <if test="condition.detail != null and condition.detail !='' ">
         AND detail =#{condition.detail,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.region != null   and condition.region !='' ">
+            AND region =#{condition.region,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}
@@ -106,6 +121,9 @@
         <if test="condition.detail != null and condition.detail !='' ">
         AND detail =#{condition.detail,jdbcType=VARCHAR}
         </if>
+        <if test="condition.region != null and condition.region !='' ">
+            AND region =#{condition.region,jdbcType=VARCHAR}
+        </if>
         <if test="condition.isVaild != null and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}
         </if>
@@ -128,6 +146,9 @@
             <if test="po.detail != null and po.detail !=''  ">
                 detail =#{po.detail,jdbcType=VARCHAR},
             </if>
+            <if test="po.region != null and po.region !='' ">
+                region =#{po.region,jdbcType=VARCHAR},
+            </if>
             <if test="po.isVaild != null and po.isVaild !=''  ">
                 is_vaild =#{po.isVaild,jdbcType=TINYINT},
             </if>
@@ -145,6 +166,9 @@
         </if>
         <if test="condition.detail != null and condition.detail !='' ">
         AND detail =#{condition.detail,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.region != null and condition.region !='' ">
+            AND region =#{condition.region,jdbcType=VARCHAR}
         </if>
         <if test="condition.isVaild != null and condition.isVaild !='' ">
         AND is_vaild =#{condition.isVaild,jdbcType=TINYINT}

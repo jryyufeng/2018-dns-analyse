@@ -7,6 +7,8 @@ import dns.analyse.service.IDnsDomainIpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Author: jiangrongyin@meituan.com
  * Date: 2019/1/23 下午8:24
@@ -20,5 +22,11 @@ public class DnsDomainIpServiceImpl extends DnsServiceImpl<DomainIpPO> implement
     @Override
     protected BaseDAO getEntityDao() {
         return domainIpDAO;
+    }
+
+    @Override
+
+    public List<DomainIpPO> queryByStartAndEnd(Integer start, Integer end){
+        return domainIpDAO.queryByStartAndEnd(start,end);
     }
 }

@@ -2,6 +2,9 @@ package dns.analyse.service;
 
 
 import dns.analyse.dao.model.DomainIpPO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * Author: jiangrongyin@meituan.com
@@ -9,5 +12,5 @@ import dns.analyse.dao.model.DomainIpPO;
  * Description:
  */
 public interface IDnsDomainIpService extends IDnsBaseService<DomainIpPO> {
-
+    List<DomainIpPO> queryByStartAndEnd(Integer start, Integer end);
 }

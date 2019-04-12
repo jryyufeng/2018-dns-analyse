@@ -11,15 +11,14 @@ import java.util.stream.Collectors;
 import com.alibaba.fastjson.JSON;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.mapper.DomainDetailDAO;
-import dns.analyse.dao.model.DomainAnalysePO;
-import dns.analyse.dao.model.DomainDependencePO;
+import dns.analyse.dao.model.*;
 import dns.analyse.AbstractJunitTest;
-import dns.analyse.dao.model.DomainDetailPO;
-import dns.analyse.dao.model.DomainNetDetailPO;
 import dns.analyse.service.IDnsDomainCdnService;
 import dns.analyse.service.IDnsDomainDependenceService;
+import dns.analyse.service.IDnsDomainIpService;
 import dns.analyse.service.IDomainDetailService;
 import dns.analyse.service.processors.CreateDomainDetailProcess;
+import dns.analyse.service.processors.GetIpCityProcess;
 import dns.analyse.service.tools.JedisUtil;
 
 import dns.analyse.service.tools.LogAnnotation;
@@ -57,6 +56,11 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private IDnsDomainDependenceService dnsDomainDependenceService;
     @Autowired
     private IDnsDomainCdnService dnsDomainCdnService;
+    @Autowired
+    private GetIpCityProcess getIpCityProcess;
+    @Autowired
+    private IDnsDomainIpService dnsDomainIpService;
+
     @Test
     @Rollback(false)  // 避免事务回滚
     public void insert() {
@@ -254,6 +258,12 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     public void testCdnCache(){
         display(dnsDomainDependenceService.getDOMAIN_NUMTYPE("=0"));
     }
-
+    @Test
+    @Rollback(false)
+    public void testProcess(){
+        //System.out.println("美国".split(" ")[0]);
+        getIpCityProcess.handleRegion(74487,95355);
+       //dnsDomainIpService.update(DomainIpPO.builder().region("北京").build(),DomainIpPO.builder().id(2).build());
+    }
 
 }

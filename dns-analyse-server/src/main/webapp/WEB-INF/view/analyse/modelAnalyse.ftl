@@ -92,8 +92,8 @@
         </div>
         <div class="tab-pane fade" id="observation" >
             <div class="panel-body">
-                <div class="div-inline" id="main" style="width: 600px;height:400px; float:left;"></div>
-                <div class="div-inline" id="main2" style="width: 600px;height:400px; float:left;"></div>
+                <div class="div-inline" id="main" style="width: 500px;height:400px; float:left;"></div>
+                <div class="div-inline" id="main2" style="width: 500px;height:400px; float:left;"></div>
                 <div style="width: 600px;"><table id="orderDataTable6" ></table></div>
             </div>
         </div>
@@ -106,7 +106,6 @@
                                 输入故障服务器:
                             </th>
                             <th>
-
                                 <input type="text" class="form-control" id="url_get" name="url_get" placeholder="故障服务器"/>
                             </th>
                             <th>

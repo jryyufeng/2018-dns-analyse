@@ -19,7 +19,7 @@ import javax.print.DocFlavor.STRING;
 public class DomainIpPO {
 
     public static String ID_COLUMN_NAME="id";
-    private Long id;
+    private Integer id;
     private Integer isVaild;
 
     /**
@@ -34,6 +34,10 @@ public class DomainIpPO {
      * 服务器位置
      */
     private String detail;
+
+    private String region;
+
+    private String domain;
 
 
 

@@ -17,5 +17,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DomainIpDAO extends  BaseDAO<DomainIpPO,Integer>  {
 
-
+    List<DomainIpPO> queryByStartAndEnd(@Param("start") Integer start,@Param("end") Integer end);
 }
