@@ -15,6 +15,7 @@
   <!-- aspectj注解支持 -->
   <aop:aspectj-autoproxy proxy-target-class="true"/>
   <import resource="dal/applicationContext-db-slt.xml"/>
+  <import resource="spring-redis.xml"/>
   <import resource="spring-jedis.xml"/>
 
 </beans>

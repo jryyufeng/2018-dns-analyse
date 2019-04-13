@@ -22,6 +22,7 @@ import dns.analyse.service.processors.GetIpCityProcess;
 import dns.analyse.service.tools.JedisUtil;
 
 import dns.analyse.service.tools.LogAnnotation;
+import dns.analyse.service.tools.RedisCacheManager;
 import jnr.ffi.annotations.In;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -60,6 +61,8 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private GetIpCityProcess getIpCityProcess;
     @Autowired
     private IDnsDomainIpService dnsDomainIpService;
+    @Resource
+    private RedisCacheManager redisCacheManager;
 
     @Test
     @Rollback(false)  // 避免事务回滚
@@ -188,8 +191,9 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     }
     @Test
     public void test1 () {
-        // redisCacheManager.set("test12","123890",60);
-       display(jedisUtil.demo_set());
+        //redisCacheManager.set("test12","123890",60);
+        //display(jedisUtil.demo_set());
+       display(JSON.parseArray(redisCacheManager.get("www.baidu.com_ipInfo").toString(), DomainIpPO.class));
     }
     @Test
     @Scheduled(cron = "0/5 * * * * ?")
