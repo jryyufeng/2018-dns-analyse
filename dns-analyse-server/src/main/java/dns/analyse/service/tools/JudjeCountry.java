@@ -20,7 +20,7 @@ public class JudjeCountry {
     public static CountryIfChinaEnum judje(String regoin){
         if(CITYLIST.contains(regoin)){
             return CountryIfChinaEnum.IN;
-        }else if(Objects.equals(regoin,"服务器信息未知")){
+        }else if(Objects.equals(regoin,"服务器信息未知")|| Objects.equals(regoin,"未知国家")){
             return CountryIfChinaEnum.NOT;
         }else {
             return CountryIfChinaEnum.OUT;

@@ -41,7 +41,7 @@
             <li class="active"><a href="#home" data-toggle="tab">
                 ip列表</a>
             </li>
-            <li><a href="#ios" data-toggle="tab">ip信息统计</a></li>
+            <li><a href="#ios" data-toggle="tab" id="iso1">ip信息统计</a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="home">
@@ -50,8 +50,8 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="ios" style="height: 700px; width:1000px;">
-                <div class="div-inline" id="main2" style="width: 800px;height:700px; float:left;"></div>
-                <div class="div-inline" style="width: 200px;height:700px; float:left;">
+                <div class="div-inline" id="main2" style="width: 750px;height:700px; float:left;"></div>
+                <div class="div-inline" style="width: 250px;height:700px; float:left;">
                     <div id="main3" style="width: 300px;height:350px;"></div>
                     <div id="main4" style="width: 300px;height:350px;"></div>
                 </div>
@@ -63,138 +63,17 @@
 </body>
 </html>
 <script>
-    var option1 = {
-        title: {
-            text: '国外Ip数量统计',
-            left: 'center',
-            top: 20,
-            textStyle: {
-                color: '#ccc'
-            }
-        },
-        dataset: {
-            source: [
-                ['score', 'amount', 'product'],
-                [89.3, 58212, 'Matcha Latte'],
-                [57.1, 78254, 'Milk Tea'],
-                [74.4, 41032, 'Cheese Cocoa'],
-                [50.1, 12755, 'Cheese Brownie'],
-                [89.7, 20145, 'Matcha Cocoa'],
-                [68.1, 79146, 'Tea'],
-                [19.6, 91852, 'Orange Juice'],
-                [10.6, 101852, 'Lemon Juice'],
-                [32.7, 20112, 'Walnut Brownie']
-            ]
-        },
-        grid: {containLabel: true},
-        xAxis: {name: 'amount'},
-        yAxis: {type: 'category'},
-        visualMap: {
-            orient: 'horizontal',
-            left: 'center',
-            min: 10,
-            max: 100,
-            text: ['High Score', 'Low Score'],
-            // Map the score column to color
-            dimension: 0,
-            inRange: {
-                color: ['#D7DA8B', '#E15457']
-            }
-        },
-        series: [
-            {
-                type: 'bar',
-                encode: {
-                    // Map the "amount" column to X axis.
-                    x: 'amount',
-                    // Map the "product" column to Y axis
-                    y: 'product'
-                }
-            }
-        ]
-    };
-
-    var option = {
-       // backgroundColor: '#2c343c',
-        title: {
-            text: '国内外Ip占比',
-            left: 'center',
-            top: 20,
-            textStyle: {
-                color: '#ccc'
-            }
-        },
-
-        tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-
-        visualMap: {
-            show: false,
-            min: 80,
-            max: 600,
-            inRange: {
-                colorLightness: [0, 1]
-            }
-        },
-        series : [
-            {
-                name:'访问来源',
-                type:'pie',
-                radius : '55%',
-                center: ['50%', '50%'],
-                data:[
-                    {value:335, name:'国内'},
-                    {value:310, name:'国外'}
-                ].sort(function (a, b) { return a.value - b.value; }),
-                roseType: 'radius',
-                label: {
-                    normal: {
-                        textStyle: {
-                            color: '#000000'
-                        }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        lineStyle: {
-                            color: '#F7EF31'
-                        },
-                        smooth: 0.2,
-                        length: 10,
-                        length2: 20
-                    }
-                },
-                itemStyle: {
-                    normal: {
-                        color: '#c23531',
-                        shadowBlur: 200,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                },
-
-                animationType: 'scale',
-                animationEasing: 'elasticOut',
-                animationDelay: function (idx) {
-                    return Math.random() * 200;
-                }
-            }
-        ]
-    };
-    //初始化echarts实例
-    var myChart3 = echarts.init(document.getElementById('main3'));
-    //使用制定的配置项和数据显示图表
-    myChart3.setOption(option);
-    //初始化echarts实例
-    var myChart4 = echarts.init(document.getElementById('main4'));
-    //使用制定的配置项和数据显示图表
-    myChart4.setOption(option1);
+    $(document).ready(function(){
+    //要执行的js代码段
+        $("#iso1").hide();
+    });
 </script>
+
 <script>
     var echartsData = [];
     $('#searchTraceBtn').click(function () {
         $("#orderDataTable").bootstrapTable('refresh');
+        $("#iso1").show();
         $.ajax({
             type : 'get',
             async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -252,6 +131,131 @@
             error : function(msg) {
                 alert("图表请求ip区域位置数据失败!"+msg);
                 myChart1.hideLoading();
+            }
+        });
+        $.ajax({
+            type : 'get',
+            async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+            url : $("#base").attr('href') + '/admin/domainIp/api/getIpInfo/country',
+            data : {domain:$('#domain').val()},
+            dataType : "json", //返回数据形式为json
+            success : function(result){
+                var mapData = [
+                    {name:"国外",value:result['external']},
+                    {name:"国内",value:result['internal']},
+                    {name:"未知",value:result['not']}
+                ];
+                var list = result['infoList'];
+                var data2 = [['score', 'amount', 'product']];
+                for(var data1 in list){
+                    //[57.1, 78254, 'Milk Tea'],
+                    //console.log("name",list[data1]);
+                    var proportion = (parseInt(list[data1]['value'])/parseInt(result['external'])).toFixed(3);
+                    data2.push(
+                        [proportion*100,list[data1]['value'],list[data1]['name']]
+                );
+                }
+                console.log(data2);
+
+                var option = {
+                    title: {
+                        text: '国内外Ip占比',
+                        left: 'center',
+                        top: 20,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data:['国内','国外','未知']
+                    },
+                    color:['#337ab7','#F4F74E','#1CDAFB'],
+                    series: [
+                        {
+                            name:'域名数据',
+                            type:'pie',
+                            radius: ['50%', '70%'],
+                            avoidLabelOverlap: false,
+                            label: {
+                                normal: {
+                                    show: false,
+                                    position: 'center'
+                                },
+                                emphasis: {
+                                    show: true,
+                                    textStyle: {
+                                        fontSize: '30',
+                                        fontWeight: 'bold'
+                                    }
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data:mapData
+                        }
+                    ]
+                };
+                //初始化echarts实例
+                var myChart3 = echarts.init(document.getElementById('main3'));
+                myChart3.setOption(option);
+
+                var option1 = {
+                    title: {
+                        text: '国外Ip数量统计',
+                        left: 'center',
+                        top: 20,
+                        textStyle: {
+                            color: '#ccc'
+                        }
+                    },
+                    dataset: {
+                        source: data2
+                    },
+                    grid: {containLabel: true},
+                    xAxis: {name: 'amount'},
+                    yAxis: {type: 'category'},
+                    visualMap: {
+                        orient: 'horizontal',
+                        left: 'center',
+                        min: 10,
+                        max: 100,
+                        text: ['High Score', 'Low Score'],
+                        // Map the score column to color
+                        dimension: 0,
+                        inRange: {
+                            color: ['#D7DA8B', '#E15457']
+                        }
+                    },
+                    series: [
+                        {
+                            type: 'bar',
+                            encode: {
+                                // Map the "amount" column to X axis.
+                                x: 'amount',
+                                // Map the "product" column to Y axis
+                                y: 'product'
+                            }
+                        }
+                    ]
+                };
+
+
+                //初始化echarts实例
+                var myChart4 = echarts.init(document.getElementById('main4'));
+                //使用制定的配置项和数据显示图表
+                myChart4.setOption(option1);
+            },
+            error : function (result) {
+
             }
         });
     });

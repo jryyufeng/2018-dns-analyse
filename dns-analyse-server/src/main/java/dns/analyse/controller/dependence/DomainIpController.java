@@ -64,7 +64,7 @@ public class DomainIpController {
                     .po(pos)
                     .totalCount(pos.size())
                     .pageNum(pageNum)
-                    .pageSize(pageSize)
+                    .pageSize(pos.size())
                     .build();
         }
         List<DomainIpPO> list = dnsDomainIpService.queryPageByCondition(vo,pageNum,pageSize);
@@ -200,7 +200,7 @@ public class DomainIpController {
         });
         //写入redis缓存
         String json = JSON.toJSONString(pos1);
-        boolean cacheRes = redisCacheManager.set(domain+"_ipInfo",json);
+        boolean cacheRes = redisCacheManager.set(domain+"_ipInfo",json,2);
         if(!cacheRes){
             LOGGER.error("ipInfo写入缓存失败,domain:{}",domain);
         }

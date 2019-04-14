@@ -49,8 +49,8 @@
             服务器列表</a>
         </li>
         <li><a href="#ios" data-toggle="tab">故障模型</a></li>
-        <li><a href="#observation" data-toggle="tab">选择观察</a></li>
-        <li><a href="#speculation" data-toggle="tab">故障推测</a></li>
+        <li><a href="#observation" data-toggle="tab" id="chooseLook">选择观察</a></li>
+        <li><a href="#speculation" data-toggle="tab" id="speculation1">故障推测</a></li>
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
@@ -142,11 +142,20 @@
 </body>
 </html>
 <script>
+    $(document).ready(function(){
+        //要执行的js代码段
+        $("#chooseLook").hide();
+        $("#speculation1").hide();
+    });
+</script>
+<script>
     var domain = '';
     var mps =[];
     var mcs = [];
     var serverImportance = [];
     $('#searchTraceBtn').click(function () {
+        $("#chooseLook").show();
+        $("#speculation1").show();
         var params = {
             pageNumber: 1
         };

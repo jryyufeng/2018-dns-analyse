@@ -126,13 +126,13 @@ public class RedisCacheManager {
      * @param value
      *            值
      * @param time
-     *            时间(秒) time要大于0 如果time小于等于0 将设置无限期
+     *            时间(天) time要大于0 如果time小于等于0 将设置无限期
      * @return true成功 false 失败
      */
     public boolean set(String key, Object value, long time) {
         try {
             if (time > 0) {
-                redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
+                redisTemplate.opsForValue().set(key, value, time, TimeUnit.DAYS);
             } else {
                 set(key, value);
             }

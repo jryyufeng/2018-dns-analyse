@@ -39,7 +39,7 @@
         <li class="active"><a href="#home" data-toggle="tab">
             域名总览</a>
         </li>
-        <li><a href="#ios" data-toggle="tab">cdn依赖详情</a></li>
+        <li><a href="#ios" data-toggle="tab" id="ios1">cdn依赖详情</a></li>
     </ul>
     <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="home">
@@ -57,12 +57,19 @@
 </body>
 </html>
 <script>
+    $(document).ready(function(){
+        //要执行的js代码段
+        $("#ios1").hide();
+    });
+</script>
+<script>
     $('#searchTraceBtn').click(function () {
         var params = {
             pageNumber: 1
         };
         $("#orderDataTable").bootstrapTable('refresh', params);
         $("#cdnDetailTable").bootstrapTable('refresh', params);
+        $("#ios1").show();
     });
 
     $("#orderDataTable").bootstrapTable({
