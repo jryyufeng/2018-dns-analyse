@@ -74,6 +74,7 @@
     $('#searchTraceBtn').click(function () {
         $("#orderDataTable").bootstrapTable('refresh');
         $("#iso1").show();
+        var myChart2 = echarts.init(document.getElementById('main2'));
         $.ajax({
             type : 'get',
             async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -124,13 +125,12 @@
                     }]
                 };
                 //初始化echarts实例
-                var myChart2 = echarts.init(document.getElementById('main2'));
                 //使用制定的配置项和数据显示图表
                 myChart2.setOption(optionMap);
             },
             error : function(msg) {
                 alert("图表请求ip区域位置数据失败!"+msg);
-                myChart1.hideLoading();
+                myChart2.hideLoading();
             }
         });
         $.ajax({

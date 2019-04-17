@@ -71,20 +71,20 @@
             <b class="arrow icon-angle-down"></b>
         </a>
         <ul class="submenu">
-            <li onclick="loadPage('/admin/view/orderbusiness/list');">
+            <li onclick="loadPage('/admin/view/coreDomain/coreShow');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 核心域展示 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/orderinfo/list');">
+            <li onclick="loadPage('/admin/view/coreDomain/topologicalStructure');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 拓扑特征 </span>
                 </a>
             </li>
 
-            <li onclick="loadPage('/admin/view/orderinfo/list');">
+            <li onclick="loadPage('/admin/view/coreDomain/tryDislodge');">
                 <a href="javascript:void(0);">
                     <i class="icon-arrow-right"></i>
                     <span class="menu-text"> 模拟节点攻击 </span>
