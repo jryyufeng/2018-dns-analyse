@@ -1,11 +1,13 @@
 package dns.analyse.controller.treeAnalyse;
 
+import com.alibaba.fastjson.JSON;
 import dns.analyse.dao.model.DomainAnalysePO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.model.AnalyseServerInfoVO;
 import dns.analyse.model.DomainAnalyseVO;
 import dns.analyse.service.IDnsDomainDependenceService;
 import dns.analyse.service.IDomainAnalyse;
+import dns.analyse.service.tools.RedisCacheManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +34,8 @@ public class TreeAnalyseController {
     IDomainAnalyse domainAnalyse;
     @Autowired
     IDnsDomainDependenceService dnsDomainDependenceService;
+    @Autowired
+    RedisCacheManager redisCacheManager;
 
     @GetMapping("/list")
     @ResponseBody
@@ -98,7 +102,10 @@ public class TreeAnalyseController {
         if(StringUtils.isBlank(domain)){
             return null;
         }
-        DomainAnalysePO po = domainAnalyse.queryByDomain(domain);
+        DomainAnalysePO po = getAnalysePO(domain);
+        if(po == null){
+            return null;
+        }
         String importance = po.getStructImportance();
         List<AnalyseServerInfoVO> vos = new ArrayList<>();
         Arrays.asList(importance.split("\\)\\(")).forEach(t->{
@@ -112,14 +119,44 @@ public class TreeAnalyseController {
         });
         return vos;
     }
+    private DomainAnalysePO getAnalysePO(String domain){
+        DomainAnalysePO po ;
+        boolean res;
+        Object poStr = redisCacheManager.get(domain+"_analysePo");
+        if(poStr == null){
+            po = domainAnalyse.queryByDomain(domain);
+            String redisStr = JSON.toJSONString(po);
+            try {
+                res = redisCacheManager.set(domain+"_analysePo",redisStr,2);
+
+            }catch (Exception e){
+                log.error("故障树重要度结果，插入缓存失败:{}",domain,e);
+                return null;
+            }
+            return res ? po:null;
+        }
+        try {
+            po = JSON.parseObject(poStr.toString(),DomainAnalysePO.class);
+            return po;
+        }catch (Exception e){
+            log.error("缓存数据json反序列化失败:{}",domain,e);
+            return null;
+        }
+    }
     @GetMapping("/queryMcs")
     @ResponseBody
     public List<String> queryMcs(@RequestParam(defaultValue = "www.baidu.com") String domain){
         if(StringUtils.isBlank(domain)){
             return null;
         }
-        DomainAnalysePO po = domainAnalyse.queryByDomain(domain);
+        DomainAnalysePO po = getAnalysePO(domain);
+        if(Objects.equals(po,null)){
+            return null;
+        }
         String importance = po.getMcs();
+        if(StringUtils.isBlank(importance)){
+            return null;
+        }
         return Arrays.asList(importance.split("\\)\\("));
     }
     @GetMapping("/queryMps")
@@ -128,8 +165,14 @@ public class TreeAnalyseController {
         if(StringUtils.isBlank(domain)){
             return null;
         }
-        DomainAnalysePO po = domainAnalyse.queryByDomain(domain);
+        DomainAnalysePO po = getAnalysePO(domain);
+        if(Objects.equals(po,null)){
+            return null;
+        }
         String importance = po.getMps();
+        if(StringUtils.isBlank(importance)){
+            return null;
+        }
         return Arrays.asList(importance.split("\\)\\("));
     }
     @GetMapping("/speculative/failureMps")

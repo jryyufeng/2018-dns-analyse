@@ -88,6 +88,8 @@ public class DependenceController {
         return vos;
 
     }
+    //CDN信息写入缓存
+
     @GetMapping("/getSubDetail")
     @ResponseBody
     public DomainDetailPO getSubDetail(String domain){

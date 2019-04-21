@@ -27,7 +27,7 @@
                 <h3 class="panel-title">提交攻击节点</h3>
             </div>
             <div class="panel-body">
-                <br></br>
+                <br/>
                 <form class="form-horizontal" role="form" id="formid">
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="createdBy">方式:</label>
