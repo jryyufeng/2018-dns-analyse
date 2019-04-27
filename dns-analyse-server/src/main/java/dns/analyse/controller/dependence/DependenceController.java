@@ -14,6 +14,8 @@ import dns.analyse.service.tools.LogAnnotation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.python.core.util.StringUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/admin/dependence/api")
 public class DependenceController {
+
+    private static final Logger LOGGER = LogManager.getLogger(DependenceController.class.getName());
+
     @Autowired
     IDnsDomainDependenceService dnsDomainDependenceService;
     @Autowired
@@ -50,6 +55,7 @@ public class DependenceController {
     @LogAnnotation(title = "依赖信息",action = "获取依赖信息列表")
     @ResponseBody
     public DomainDependenceVO getList(DomainDependencePO vo,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize){
+        LOGGER.info("获取依赖信息列表");
         List<DomainDependencePO> list = dnsDomainDependenceService.queryPageByCondition(vo,pageNum,pageSize);
         Integer count = 1000000;
         return DomainDependenceVO.builder()

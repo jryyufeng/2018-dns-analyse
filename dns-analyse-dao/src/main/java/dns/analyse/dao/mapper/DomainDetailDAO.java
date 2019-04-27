@@ -17,5 +17,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DomainDetailDAO extends  BaseDAO<DomainDetailPO,Integer>  {
 
+    List<DomainDetailPO> queryByIdStartAndEnd(@Param("startId") Integer startId,@Param("endId") Integer endId);
 
 }

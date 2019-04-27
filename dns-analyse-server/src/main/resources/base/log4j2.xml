@@ -4,7 +4,7 @@
   <!-- 文件路径 -->
   <properties>
     <!--设置日志在硬盘上输出的目录${log4j:configParentLocation}使用此查找将日志文件放在相对于log4j配置文件的目录中-->
-    <property name="Log_Home">/opt/logs/dns.analyse</property>
+    <property name="Log_Home">E:\opt\logs\dns.analyse</property>
 
   </properties>
 

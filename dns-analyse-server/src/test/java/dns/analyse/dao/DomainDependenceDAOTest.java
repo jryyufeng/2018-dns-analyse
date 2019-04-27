@@ -19,6 +19,7 @@ import dns.analyse.service.IDnsDomainIpService;
 import dns.analyse.service.IDomainDetailService;
 import dns.analyse.service.processors.CreateDomainDetailProcess;
 import dns.analyse.service.processors.GetIpCityProcess;
+import dns.analyse.service.processors.UpdateCorssProcess;
 import dns.analyse.service.tools.JedisUtil;
 
 import dns.analyse.service.tools.LogAnnotation;
@@ -63,6 +64,8 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private IDnsDomainIpService dnsDomainIpService;
     @Resource
     private RedisCacheManager redisCacheManager;
+    @Resource
+    private UpdateCorssProcess updateCorssProcess;
 
     @Test
     @Rollback(false)  // 避免事务回滚
@@ -268,6 +271,14 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         //System.out.println("美国".split(" ")[0]);
         getIpCityProcess.handleRegion(74487,95355);
        //dnsDomainIpService.update(DomainIpPO.builder().region("北京").build(),DomainIpPO.builder().id(2).build());
+    }
+
+    @Test
+    @Rollback(false)
+    public void testUpdateCross(){
+        updateCorssProcess.updateCorss(500000,600000);
+//        Integer num = domainDependenceDAO.updateByCondition(DomainDependencePO.builder().crossDomain(1).build(),
+//                DomainDependencePO.builder().domain("www.baidu.com").build());
     }
 
 }
