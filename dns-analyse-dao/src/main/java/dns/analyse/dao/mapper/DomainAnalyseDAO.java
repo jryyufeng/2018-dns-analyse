@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * Description:
  */
 @Repository
-public interface DomainAnalyseDAO extends BaseDAO<DomainAnalyseDAO,Integer> {
+public interface DomainAnalyseDAO extends BaseDAO<DomainAnalysePO,Integer> {
     DomainAnalysePO queryByDomain(@Param("domain") String domain);
 }

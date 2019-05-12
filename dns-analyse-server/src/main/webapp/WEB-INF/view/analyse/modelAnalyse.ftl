@@ -188,8 +188,8 @@
             }
         ],
         onLoadSuccess:function(res){
-            var text = $('#title').text().replace('0',res.length);
-            $("#title").text(text);
+            //var text = $('#title').text().replace('0',res.length);
+            $("#title").text('共获取'+res.length+'个可解析依赖服务器');
             domain = $('#domain').val();
         }
     });
@@ -516,12 +516,12 @@
                 }
             ]
         });
-        var text = $('#mpsTitle').text().replace('{0}',newMps.length).replace('{0%}',newMps.length/mps.length);
-        console.log(text);
-        $("#mpsTitle").text(text);
-        var textc = $('#mcsTitle').text().replace('{0}',newMcs.length).replace('{0%}',newMcs.length/mcs.length);
-        console.log(textc);
-        $("#mcsTitle").text(textc);
+        // var text = $('#mpsTitle').text().replace('{0}',newMps.length).replace('{0%}',newMps.length/mps.length);
+        // console.log(text);
+        $("#mpsTitle").text('(本次共影响'+newMps.length+'个路集，解析成功率为'+newMps.length/mps.length+')');
+        // var textc = $('#mcsTitle').text().replace('{0}',newMcs.length).replace('{0%}',newMcs.length/mcs.length);
+        // console.log(textc);
+        $("#mcsTitle").text('(本次共影响'+newMcs.length+'个割集，解析失败率为'+newMcs.length/mcs.length+')');
     }
 
 </script>

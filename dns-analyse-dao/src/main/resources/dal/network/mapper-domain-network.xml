@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dns.analyse.dao.mapper.DomainNetWorkDAO">
+
+    <resultMap id="domainNetWorkResultMap"
+               type="dns.analyse.dao.model.DomainNetWorkPO">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="vertex" jdbcType="VARCHAR" property="vertex"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="chart" jdbcType="VARCHAR" property="chart"/>
+        <result column="in_degree" jdbcType="INTEGER" property="inDegree"/>
+        <result column="clustering" jdbcType="DOUBLE" property="clustering"/>
+        <result column="between_centrality" jdbcType="DOUBLE" property="betweenCentrality"/>
+    </resultMap>
+
+    <sql id="selectField">
+        SELECT
+        vertex,
+        type,
+        chart,
+        in_degree,
+        clustering,
+        between_centrality
+        FROM  domain_network
+    </sql>
+
+    <insert id="insert" parameterType="dns.analyse.dao.model.DomainAnalysePO"
+            useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO domain_network (
+        vertex,
+        type,
+        chart,
+        in_degree,
+        clustering,
+        between_centrality
+        ) VALUES (
+        #{vertex,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
+        #{chart,jdbcType=VARCHAR},
+        #{inDegree,jdbcType=INTEGER},
+        #{clustering,jdbcType=DOUBLE},
+        #{betweenCentrality,jdbcType=DOUBLE}
+        )
+    </insert>
+
+
+
+    <select id="queryAllByCondition"  parameterType="map" resultMap="domainNetWorkResultMap">
+        <include refid="selectField"/>
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.chart != null   and condition.chart !='' ">
+                and chart =#{condition.chart,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer" >
+        SELECT  count(*) from domain_network
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.chart != null   and condition.chart !='' ">
+                and chart =#{condition.chart,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="queryPageByCondition" parameterType="map" resultMap="domainNetWorkResultMap">
+        <include refid="selectField"/>
+        <where>
+            1=1
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.chart != null   and condition.chart !='' ">
+                and chart =#{condition.chart,jdbcType=VARCHAR}
+            </if>
+            limit ${fromNum},${pageSize}
+        </where>
+    </select>
+
+    <update id="updateByCondition" parameterType="map">
+        update domain_network
+        <set>
+            <if test="po.id != null and po.id !=''  ">
+                id =#{po.id,jdbcType=INTEGER},
+            </if>
+            <if test="po.vertex != null and po.vertex !=''  ">
+                vertex =#{po.vertex,jdbcType=VARCHAR},
+            </if>
+            <if test="po.type != null and po.type !=''  ">
+                type =#{po.type,jdbcType=INTEGER},
+            </if>
+            <if test="po.chart != null and po.chart !=''  ">
+                chart =#{po.chart,jdbcType=VARCHAR},
+            </if>
+            <if test="po.inDegree != null and po.inDegree !=''  ">
+                in_degree =#{po.inDegree,jdbcType=INTEGER}
+            </if>
+            <if test="po.clustering != null and po.clustering !=''  ">
+                clustering =#{po.clustering,jdbcType=DOUBLE}
+            </if>
+            <if test="po.betweenCentrality != null and po.betweenCentrality !=''  ">
+                between_centrality =#{po.inDegree,jdbcType=DOUBLE}
+            </if>
+        </set>
+        <where>
+            <if test="condition.id != null   and condition.id !='' ">
+                AND id =#{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.chart != null   and condition.chart !='' ">
+                and chart =#{condition.chart,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+
+    <select id="queryByIds" resultMap="domainNetWorkResultMap">
+        <include refid="selectField"/>
+        WHERE id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+
+</mapper>

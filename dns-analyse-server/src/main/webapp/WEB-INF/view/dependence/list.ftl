@@ -107,13 +107,19 @@
         pageSize: 20,
         toolbar: '#toolbar', // 搜索bar
         locales: 'zh-CN',
+        sortable: true,                     //是否启用排序
+        sortOrder: "asc",                   //排序方式
         sidePagination: 'server',
+        showColumns: true,                  //是否显示所有的列（选择显示的列）
+        showRefresh: true,                  //是否显示刷新按钮
         detailView: true,
         queryParams: function (params) {
             return {
                 pageNum: (params.offset + params.limit) / params.limit,
                 pageSize: params.limit,
                 domain: $('#domain').val(),
+                sort:params.sort,
+                sortOrder:params.order,
                 crossDomain: 2//$('#select').val()   //新建字段
             }
         },
@@ -147,7 +153,8 @@
             },
             {
                 field: 'domainNum',
-                title: '子域数目'
+                title: '子域数目',
+                sortable : true
             },
             {
                 field: 'crossDomain',

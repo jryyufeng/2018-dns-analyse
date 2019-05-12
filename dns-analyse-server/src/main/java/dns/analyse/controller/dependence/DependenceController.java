@@ -54,10 +54,13 @@ public class DependenceController {
     @GetMapping("/list")
     @LogAnnotation(title = "依赖信息",action = "获取依赖信息列表")
     @ResponseBody
-    public DomainDependenceVO getList(DomainDependencePO vo,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize){
+    public DomainDependenceVO getList(DomainDependencePO vo,@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize , String sort){
         LOGGER.info("获取依赖信息列表");
         List<DomainDependencePO> list = dnsDomainDependenceService.queryPageByCondition(vo,pageNum,pageSize);
         Integer count = 1000000;
+        if (sort != null){
+            list.sort((t1,t2)->t1.getDomainNum()-t2.getDomainNum());
+        }
         return DomainDependenceVO.builder()
                 .po(list)
                 .totalCount(count)
