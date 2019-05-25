@@ -1,22 +1,18 @@
 package dns.analyse.dao;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 import com.alibaba.fastjson.JSON;
+import dns.analyse.dao.mapper.DomainAnalyseDAO;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
 import dns.analyse.dao.mapper.DomainDetailDAO;
+import dns.analyse.dao.mapper.DomainNetWorkDAO;
 import dns.analyse.dao.model.*;
 import dns.analyse.AbstractJunitTest;
-import dns.analyse.service.IDnsDomainCdnService;
-import dns.analyse.service.IDnsDomainDependenceService;
-import dns.analyse.service.IDnsDomainIpService;
-import dns.analyse.service.IDomainDetailService;
+import dns.analyse.service.*;
 import dns.analyse.service.processors.CreateDomainDetailProcess;
 import dns.analyse.service.processors.GetIpCityProcess;
 import dns.analyse.service.processors.UpdateCorssProcess;
@@ -36,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
@@ -66,6 +63,12 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private RedisCacheManager redisCacheManager;
     @Resource
     private UpdateCorssProcess updateCorssProcess;
+    @Resource
+    private DomainNetWorkDAO domainNetWorkDAO;
+    @Resource
+    private DomainAnalyseDAO domainAnalyseDAO;
+    @Autowired
+    private IHandleNetworkNode handleNetworkNode;
 
     @Test
     @Rollback(false)  // 避免事务回滚
@@ -279,6 +282,22 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
         updateCorssProcess.updateCorss(500000,600000);
 //        Integer num = domainDependenceDAO.updateByCondition(DomainDependencePO.builder().crossDomain(1).build(),
 //                DomainDependencePO.builder().domain("www.baidu.com").build());
+    }
+
+    @Test
+    public void testNetwork(){
+        List<String> list1 = domainNetWorkDAO.getVertexByType(11,"in_degree","graph_chain_1000","100_1");
+        display(new Random().ints(0, list1.size()).limit(5).mapToObj(t->list1.get(t).replace("_D","").replace("_C","")).collect(Collectors.toList()));
+    }
+    @Test
+    public void test112(){
+        display(Arrays.asList(domainAnalyseDAO.queryByDomain("www.baidu.com").getMcs().replace("(","").split("\\)")).size());
+    }
+    @Test
+    public void testNetWorkService(){
+       List<DomainAnalysePO> pos = handleNetworkNode.getMcss("100_1");
+       List<String> vertexs = handleNetworkNode.getVertexByPercent(1,1,"in_degree","graph_chain_1000","100_1");
+       display(handleNetworkNode.computeInvalid(pos,vertexs));
     }
 
 }

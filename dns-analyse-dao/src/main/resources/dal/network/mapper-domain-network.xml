@@ -9,6 +9,7 @@
         <result column="vertex" jdbcType="VARCHAR" property="vertex"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="chart" jdbcType="VARCHAR" property="chart"/>
+        <result column="kind2" jdbcType="VARCHAR" property="kind2"/>
         <result column="in_degree" jdbcType="INTEGER" property="inDegree"/>
         <result column="clustering" jdbcType="DOUBLE" property="clustering"/>
         <result column="between_centrality" jdbcType="DOUBLE" property="betweenCentrality"/>
@@ -33,14 +34,16 @@
         chart,
         in_degree,
         clustering,
-        between_centrality
+        between_centrality,
+        kind2
         ) VALUES (
         #{vertex,jdbcType=VARCHAR},
         #{type,jdbcType=INTEGER},
         #{chart,jdbcType=VARCHAR},
         #{inDegree,jdbcType=INTEGER},
         #{clustering,jdbcType=DOUBLE},
-        #{betweenCentrality,jdbcType=DOUBLE}
+        #{betweenCentrality,jdbcType=DOUBLE},
+        #{kind2,jdbcType=VARCHAR}
         )
     </insert>
 
@@ -55,6 +58,9 @@
             <if test="condition.chart != null   and condition.chart !='' ">
                 and chart =#{condition.chart,jdbcType=VARCHAR}
             </if>
+            <if test="condition.kind2 != null   and condition.kind2 !='' ">
+                and kind2 =#{condition.kind2,jdbcType=VARCHAR}
+            </if>
         </where>
     </select>
 
@@ -66,6 +72,9 @@
             </if>
             <if test="condition.chart != null   and condition.chart !='' ">
                 and chart =#{condition.chart,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.kind2 != null   and condition.kind2 !='' ">
+                and kind2 =#{condition.kind2,jdbcType=VARCHAR}
             </if>
         </where>
     </select>
@@ -80,6 +89,9 @@
             </if>
             <if test="condition.chart != null   and condition.chart !='' ">
                 and chart =#{condition.chart,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.kind2 != null   and condition.kind2 !='' ">
+                and kind2 =#{condition.kind2,jdbcType=VARCHAR}
             </if>
             limit ${fromNum},${pageSize}
         </where>
@@ -117,6 +129,9 @@
             <if test="condition.chart != null   and condition.chart !='' ">
                 and chart =#{condition.chart,jdbcType=VARCHAR}
             </if>
+            <if test="condition.kind2 != null   and condition.kind2 !='' ">
+                and kind2 =#{condition.kind2,jdbcType=VARCHAR}
+            </if>
         </where>
     </update>
 
@@ -126,6 +141,22 @@
         <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
             #{item}
         </foreach>
+    </select>
+
+    <select id="getVertexByType"  parameterType="map" resultType="java.lang.String">
+        select vertex from domain_network
+        <where>
+            <if test="chart != null   and chart !='' ">
+                and chart =#{chart,jdbcType=VARCHAR}
+            </if>
+            <if test="kind2 != null   and kind2 !='' ">
+                and kind2 =#{kind2,jdbcType=VARCHAR}
+            </if>
+       </where>
+       order by #{type} desc
+        <if test="needNum != null   and needNum !='' ">
+            limit #{needNum}
+        </if>
     </select>
 
 

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.jsonview.css"/>
     <script src='${ctx}/resources/admin/assets/js/jquery-1.10.2.min.js'></script>
     <script src='${ctx}/resources/js/bootstrap.js'></script>
-    <#--<script src="${ctx}/resources/js/framework.js"></script>-->
+    <script src="${ctx}/resources/js/framework.js"></script>
     <script src="${ctx}/resources/js/clipboard.min.js"></script>
     <script src="${ctx}/resources/js/jquery.jsonview.js"></script>
     <link href="${ctx}/resources/admin/assets/css/datepicker.css" rel="stylesheet">
@@ -33,7 +33,7 @@
                         <label class="col-sm-2 control-label" for="createdBy">方式:</label>
                         <div class="col-sm-9">
                             <select class="selectthis" id="dislodgeType" >
-                                <option value="1" is="automatic">自动去除</option>
+                                <option value="1" id="automatic">自动去除</option>
                                 <option value="2" id="manual">手动去除</option>
                             </select>
                         </div>
@@ -43,11 +43,14 @@
                             <label class="col-sm-2 control-label" for="createdBy">比例:</label>
                             <div class="col-sm-9">
                                 <select class="selectthis" id="example-getting-started" >
-                                    <option value="1">1%</option>
-                                    <option value="5">5%</option>
-                                    <option value="10">10%</option>
-                                    <option value="20">20%</option>
-                                    <option value="30">30%</option>
+                                    <option value="0.1">10%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.3">30%</option>
+                                    <option value="0.4">40%</option>
+                                    <option value="0.5">50%</option>
+                                    <option value="0.6">60%</option>
+                                    <option value="0.8">80%</option>
+                                    <option value="1">100%</option>
                                 </select>
                             </div>
                         </div>
@@ -56,8 +59,8 @@
                             <div class="col-sm-9">
                                 <#--multiple="multiple"-->
                                 <select  class="selectthis" id="example-getting-started1">
-                                    <option value="1" id="suiji">随机模式</option>
-                                    <option value="2" id="core">核心模式</option>
+                                    <option value="2" id="suiji">随机模式</option>
+                                    <option value="1" id="core">核心模式</option>
                                 </select>
                             </div>
                         </div>
@@ -65,17 +68,10 @@
                             <label class="col-sm-2 control-label" for="iterationName">依据:</label>
                             <div class="col-sm-9">
                                 <div id="example">
-                                    <select class="selectthis" id="example-getting-started2">
-                                        <option value="1">1%</option>
-                                        <option value="5">5%</option>
-                                        <option value="10">10%</option>
-                                        <option value="20">20%</option>
-                                        <option value="30">30%</option>
-                                    </select>
                                 </div>
                                 <div id="example1">
                                     <select class="selectthis" id="example-getting-started3">
-                                        <option value="1">合数</option>
+                                        <option value="in_degree">入度</option>
                                         <option value="5">介数</option>
                                     </select>
                                 </div>
@@ -86,16 +82,25 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="name">名称:</label>
                             <div class="col-sm-9">
-                            <textarea class="form-control" id="name" name="name" rows="4"
-                                      placeholder="请输入名称,以空格分隔"></textarea>
+                            <input type="file" class="form-horizontal" id="myfile">
                             </div>
+                        </div>
+                    </div>
+                    <div >
+                        <label class="col-sm-2 control-label" for="iterationName">图名:</label>
+                        <div id="example">
+                            <select class="selectthis" id="example-getting-chart">
+                                <option value="graph_chain_100">测试网络</option>
+                                <option value="graph_chain_1000">千级别网络</option>
+                                <option value="graph_chain_10000">万级别网络</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-9">
                             <span style="color:red;" id="nowTs"></span>
                             <button type="button" class="btn btn-success pull-right"
-                                    onclick="framework.add('TaskData/add','formid','${request.contextPath}/TaskData/toManage');"> 提交 <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                                    onclick="submitf()"> 提交 <i class="icon-arrow-right icon-on-right bigger-110"></i>
                             </button>
                         </div>
                     </div>
@@ -111,14 +116,14 @@
             <div class="panel-body">
             <form class="form-horizontal" role="form" id="formid1">
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="createdBy">失效域名数量:</label>
+                    <label class="col-sm-4 control-label" for="createdBy">失效集合数量:</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" id="invalidNum" name="invalidNum"
                                placeholder="invalidNum"  readonly="readonly"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="createdBy">域名总数量:</label>
+                    <label class="col-sm-4 control-label" for="createdBy">可解析集合数量:</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" id="domainNum" name="domainNum"
                                placeholder="domainNum"  readonly="readonly"/>
@@ -166,6 +171,36 @@
             $("#showTwo").hide();
         }
     });
+</script>
+<script>
+    function submitf() {
+        if(document.getElementById("automatic").selected){
+            var percent = $("#example-getting-started").val();
+            var pattern = $("#example-getting-started1").val();
+            var attribute =$("#example-getting-started3").val();
+            var chartName = $("#example-getting-chart").val();
+            var param = {"percent":percent,"pattern":pattern,"attribute":attribute,"chartNmae":chartName,"kind2":"100_1"};
+            var result = framework.handleNode("/admin/network/api/deleteNode",param);
+           // console.log(result);
+            $("#domainNum").val(result.allNum);
+            $("#invalidNum").val(result.deleteNum);
+            $("#failureRatio").val(result.proportion);
+        }else{
+            var form = new FormData();
+            var fileObj = document.getElementById("myfile").files[0];
+            form.append("myfile", fileObj);
+            form.append("kind2","100_1");
+            console.log(form.get("myfile"));
+            var result = framework.edit("/admin/network/api/handleFile",form);
+            //console.log(result);
+            if(!result.message){
+                $("#domainNum").val(result.allNum);
+                $("#invalidNum").val(result.deleteNum);
+                $("#failureRatio").val(result.proportion);
+            }
+
+        }
+    }
 </script>
 <script>
     $(function () {

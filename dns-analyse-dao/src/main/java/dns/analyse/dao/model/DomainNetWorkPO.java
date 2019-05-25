@@ -20,6 +20,8 @@ public class DomainNetWorkPO {
 
     private String vertex;
 
+    private String kind2;
+
     private Integer type;
 
     private String chart;

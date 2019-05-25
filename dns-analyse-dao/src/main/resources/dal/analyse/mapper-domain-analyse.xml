@@ -72,6 +72,21 @@
             domain = #{domain}
         </where>
     </select>
+    <select id="queryByStartAndEnd" parameterType="map" resultMap="domainAnalyseResultMap">
+        SELECT
+        id,
+        domain,
+        Mcs,
+        Mps,
+        mpscount,
+        mcscount,
+        tag,
+        StructImportance
+        FROM  domain_analyse_chain
+        <where>
+            id >= #{start} and #{end} >= id
+        </where>
+    </select>
 
     <select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer" >
         SELECT  count(*) from domain_analyse

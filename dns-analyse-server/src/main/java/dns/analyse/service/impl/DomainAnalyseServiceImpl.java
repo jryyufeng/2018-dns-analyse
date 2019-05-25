@@ -7,6 +7,8 @@ import dns.analyse.service.IDomainAnalyse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Author: jiangrongyin@meituan.com
  * Date: 2019/2/24 下午3:41
@@ -25,5 +27,9 @@ public class DomainAnalyseServiceImpl extends DnsServiceImpl<DomainAnalysePO> im
     @Override
     public DomainAnalysePO queryByDomain(String domain){
         return domainAnalyseDAO.queryByDomain(domain);
+    }
+    @Override
+    public List<DomainAnalysePO> queryByStartAndEnd(Integer start,Integer end){
+        return domainAnalyseDAO.queryByStartAndEnd(start,end);
     }
 }
