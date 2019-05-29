@@ -9,17 +9,17 @@
     <title>使用cdn域名总览</title>
     <link href="${ctx}/resources/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="${ctx}/resources/css/jquery.jsonview.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/jquery.jsonview.css"/>
     <link href="${ctx}/resources/admin/assets/css/bootstrap-table.min.css" rel="stylesheet">
-    <link href="${ctx}/resources/css/bootstrap-multiselect.css"/>
+    <link href="${ctx}/resources/admin/assets/css/bootstrap-multiselect.css"/>
     <script src='${ctx}/resources/admin/assets/js/jquery-2.0.3.min.js'></script>
-    <script src='${ctx}/resources/js/bootstrap.js'></script>
-    <script src="${ctx}/resources/js/jquery.jsonview.js"></script>
+    <script src='${ctx}/resources/admin/assets/js/bootstrap.js'></script>
+    <script src="${ctx}/resources/admin/assets/js/jquery.jsonview.js"></script>
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table-locale-all.min.js"></script>
-    <script src="${ctx}/resources/js/common.js"></script>
-    <script src="${ctx}/resources/js/echarts.min.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/js/china.js" ></script>
+    <script src="${ctx}/resources/admin/assets/js/common.js"></script>
+    <script src="${ctx}/resources/admin/assets/js/echarts.min.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/admin/assets/js/china.js" ></script>
 </head>
 <body>
 </br>

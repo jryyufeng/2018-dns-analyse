@@ -11,6 +11,10 @@
         <result column="chart" jdbcType="VARCHAR" property="chart"/>
         <result column="kind2" jdbcType="VARCHAR" property="kind2"/>
         <result column="in_degree" jdbcType="INTEGER" property="inDegree"/>
+        <result column="out_degree" jdbcType="INTEGER" property="outDegree"/>
+        <result column="core_num" jdbcType="INTEGER" property="coreNum"/>
+        <result column="eigenvct_centrality" jdbcType="DOUBLE" property="eigenvctCentrality"/>
+        <result column="pagerank" jdbcType="DOUBLE" property="pagerank"/>
         <result column="clustering" jdbcType="DOUBLE" property="clustering"/>
         <result column="between_centrality" jdbcType="DOUBLE" property="betweenCentrality"/>
     </resultMap>
@@ -22,6 +26,10 @@
         chart,
         in_degree,
         clustering,
+        out_degree,
+        core_num,
+        eigenvct_centrality,
+        pagerank,
         between_centrality
         FROM  domain_network
     </sql>

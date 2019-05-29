@@ -1,3 +1,5 @@
+<#import "spring.ftl" as spring/>
+<#assign ctx=request.contextPath />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +9,16 @@
     <title>提交攻击节点</title>
     <link href="${ctx}/resources/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="${ctx}/resources/css/jquery.jsonview.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/jquery.jsonview.css"/>
     <script src='${ctx}/resources/admin/assets/js/jquery-1.10.2.min.js'></script>
-    <script src='${ctx}/resources/js/bootstrap.js'></script>
-    <script src="${ctx}/resources/js/framework.js"></script>
-    <script src="${ctx}/resources/js/clipboard.min.js"></script>
-    <script src="${ctx}/resources/js/jquery.jsonview.js"></script>
+    <script src='${ctx}/resources/admin/assets/js/bootstrap.js'></script>
+    <script src="${ctx}/resources/admin/assets/js/framework.js"></script>
+    <script src="${ctx}/resources/admin/assets/js/clipboard.min.js"></script>
+    <script src="${ctx}/resources/admin/assets/js/jquery.jsonview.js"></script>
     <link href="${ctx}/resources/admin/assets/css/datepicker.css" rel="stylesheet">
     <script src="${ctx}/resources/admin/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap-multiselect.css" type="text/css"/>
-    <script type="text/javascript" src="${ctx}/resources/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/bootstrap-multiselect.css" type="text/css"/>
+    <script type="text/javascript" src="${ctx}/resources/admin/assets/js/bootstrap-multiselect.js"></script>
 
 </head>
 <body>
@@ -72,7 +74,9 @@
                                 <div id="example1">
                                     <select class="selectthis" id="example-getting-started3">
                                         <option value="in_degree">入度</option>
-                                        <option value="5">介数</option>
+                                        <option value="between_centrality">介数</option>
+                                        <option value="out_degree">出度</option>
+                                        <option value="core_num">核心数</option>
                                     </select>
                                 </div>
                             </div>

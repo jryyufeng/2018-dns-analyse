@@ -9,16 +9,16 @@
     <title>原始故障模型</title>
     <link href="${ctx}/resources/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="${ctx}/resources/css/jquery.jsonview.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/jquery.jsonview.css"/>
     <link href="${ctx}/resources/admin/assets/css/bootstrap-table.min.css" rel="stylesheet">
-    <link href="${ctx}/resources/css/bootstrap-multiselect.css"/>
+    <link href="${ctx}/resources/admin/assets/css/bootstrap-multiselect.css"/>
     <script src='${ctx}/resources/admin/assets/js/jquery-2.0.3.min.js'></script>
-    <script src='${ctx}/resources/js/bootstrap.js'></script>
-    <script src="${ctx}/resources/js/jquery.jsonview.js"></script>
+    <script src='${ctx}/resources/admin/assets/js/bootstrap.js'></script>
+    <script src="${ctx}/resources/admin/assets/js/jquery.jsonview.js"></script>
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table.min.js"></script>
     <script src="${ctx}/resources/admin/assets/js/bootstrap-table/bootstrap-table-locale-all.min.js"></script>
-    <script src="${ctx}/resources/js/common.js"></script>
-    <script src="${ctx}/resources/js/bootstrap-multiselect.js"/>
+    <script src="${ctx}/resources/admin/assets/js/common.js"></script>
+    <script src="${ctx}/resources/admin/assets/js/bootstrap-multiselect.js"/>
 </head>
 <body>
 <script type="text/javascript">
@@ -142,7 +142,7 @@
         var payTable = $detail.html('<table></table>').find('table');
         ///////////
         $(payTable).bootstrapTable({
-            url: '/api/monitor/alive',
+            url: $("#base").attr('href') +'/api/monitor/alive',
             cache: false,
             pagination: true,
             locales: 'zh-CN',

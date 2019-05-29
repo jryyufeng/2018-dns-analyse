@@ -1,3 +1,5 @@
+<#import "spring.ftl" as spring/>
+<#assign ctx=request.contextPath />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +9,16 @@
     <title>拓扑结构图展示</title>
     <link href="${ctx}/resources/admin/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="${ctx}/resources/css/jquery.jsonview.css"/>
+    <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/jquery.jsonview.css"/>
     <script src='${ctx}/resources/admin/assets/js/jquery-1.10.2.min.js'></script>
-    <script src='${ctx}/resources/js/bootstrap.js'></script>
+    <script src='${ctx}/resources/admin/assets/js/bootstrap.js'></script>
     <#--<script src="${ctx}/resources/js/framework.js"></script>-->
-    <script src="${ctx}/resources/js/clipboard.min.js"></script>
-    <script src="${ctx}/resources/js/jquery.jsonview.js"></script>
+    <script src="${ctx}/resources/admin/assets/js/clipboard.min.js"></script>
+    <script src="${ctx}/resources/admin/assets/js/jquery.jsonview.js"></script>
     <link href="${ctx}/resources/admin/assets/css/datepicker.css" rel="stylesheet">
     <script src="${ctx}/resources/admin/assets/js/date-time/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="${ctx}/resources/css/bootstrap-multiselect.css" type="text/css"/>
-    <script type="text/javascript" src="${ctx}/resources/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="${ctx}/resources/admin/assets/css/bootstrap-multiselect.css" type="text/css"/>
+    <script type="text/javascript" src="${ctx}/resources/admin/assets/js/bootstrap-multiselect.js"></script>
 
 </head>
 <body>

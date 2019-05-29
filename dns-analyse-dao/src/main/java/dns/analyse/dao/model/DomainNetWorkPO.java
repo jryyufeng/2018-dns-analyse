@@ -32,4 +32,13 @@ public class DomainNetWorkPO {
 
     private Double betweenCentrality;
 
+    private Integer outDegree;
+
+    private Integer coreNum;
+
+    private Double eigenvctCentrality;
+
+    private Double pagerank;
+
+
 }
