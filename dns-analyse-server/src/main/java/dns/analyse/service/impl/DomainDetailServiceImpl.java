@@ -13,6 +13,7 @@ import dns.analyse.service.processors.CreateDomainDetailProcess;
 import jnr.ffi.annotations.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -38,7 +39,6 @@ public class DomainDetailServiceImpl extends DnsServiceImpl<DomainDetailPO> impl
 
     @Override
     //包含开始，不包含结尾
-
     public void detailHandler(Integer start,Integer end){
         List<DomainDependencePO> po = domainDependenceDAO.queryByIdStartAndEnd(start,end);
         po.forEach(t->{
@@ -52,6 +52,26 @@ public class DomainDetailServiceImpl extends DnsServiceImpl<DomainDetailPO> impl
                     .build());
         });
 
+    }
+    @Override
+    public boolean detailHadnlerByDomain(String domain){
+        List<DomainDependencePO> po = domainDependenceDAO.queryAllByCondition(DomainDependencePO.builder().domain(domain).build());
+        if(CollectionUtils.isEmpty(po)){
+            return false;
+        }
+        DomainDependencePO res = po.get(0);
+        List<DomainNetDetailPO> pos =CreateDomainDetailProcess.getObjectByXml(res.getDomainTree());
+        String json = JSON.toJSONString(pos);
+        Integer count = pos.stream().filter(a -> a.getFlag()).collect(Collectors.toList()).size();
+        Integer num = domainDetailDAO.insert(DomainDetailPO.builder()
+                .domain(res.getDomain())
+                .domainDetial(json)
+                .domainOutNum(count)
+                .build());
+        if(num ==null ||num <= 0){
+            return false;
+        }
+        return true;
     }
 
 }

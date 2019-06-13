@@ -49,10 +49,12 @@ public interface IDnsDomainDependenceService {
 
     Integer getDOMAIN_NUM(Integer type);
     Boolean setDomainType(Integer start,Integer end);
-
+    Boolean setDomainTypeByDomain(String domain);
     Map<String,Integer>  getDomainProportion();
 
     int getDOMAIN_TYPE_NUM(String type);
 
     int getDOMAIN_NUMTYPE(String numType);
+
+    int getNetWorkChartNum(String chartName);
 }

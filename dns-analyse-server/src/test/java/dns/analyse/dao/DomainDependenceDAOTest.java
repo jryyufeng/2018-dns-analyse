@@ -71,6 +71,10 @@ public class DomainDependenceDAOTest extends AbstractJunitTest {
     private IHandleNetworkNode handleNetworkNode;
 
     @Test
+    public void testCharts(){
+        domainNetWorkDAO.queryPageByCharts(Arrays.asList("graph_chain_100","graph_chain_10000"),1,20);
+    }
+    @Test
     @Rollback(false)  // 避免事务回滚
     public void insert() {
         DomainDependencePO po=new DomainDependencePO();

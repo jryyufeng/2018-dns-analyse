@@ -5,7 +5,9 @@ import dns.analyse.dao.model.DomainAnalysePO;
 import dns.analyse.dao.model.DomainNetWorkPO;
 import dns.analyse.model.DeleteNodeVO;
 import dns.analyse.model.DomainNetworkVO;
+import dns.analyse.service.IDnsDomainDependenceService;
 import dns.analyse.service.IHandleNetworkNode;
+import dns.analyse.service.tools.LogAnnotation;
 import dns.analyse.service.tools.RedisCacheManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -49,13 +54,15 @@ public class DomainNetworkController {
     RedisCacheManager redisCacheManager;
     @Autowired
     IHandleNetworkNode handleNetworkNode;
+    @Autowired
+    IDnsDomainDependenceService dnsDomainDependenceService;
 
     @GetMapping("/list")
     @ResponseBody
-    public DomainNetworkVO getList(String chartName, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize) {
-        List<DomainNetWorkPO> pos = domainNetWorkDAO.queryPageByCondition(DomainNetWorkPO.builder().chart(chartName).build(), pageNum, pageSize);
+    public DomainNetworkVO getList(@RequestParam(defaultValue = "graph_chain_100") String chartName, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize) {
+        List<DomainNetWorkPO> pos = domainNetWorkDAO.queryPageByCharts(Arrays.asList(chartName.split(";")), pageNum, pageSize);
         //加缓存
-        Integer total = domainNetWorkDAO.queryCountByCondition(DomainNetWorkPO.builder().chart(chartName).build());
+        Integer total = dnsDomainDependenceService.getNetWorkChartNum(chartName);
         return DomainNetworkVO.builder()
                 .pageNum(pageNum)
                 .pageSize(pageSize)
@@ -92,7 +99,7 @@ public class DomainNetworkController {
 
     @RequestMapping("/handleFile")
     @ResponseBody
-    public ResponseEntity<DeleteNodeVO> handleFile(@RequestParam("myfile") MultipartFile myfile,@RequestParam("kind2") String kind2) {
+    public ResponseEntity<DeleteNodeVO> handleFile(@RequestParam("myfile") MultipartFile myfile, @RequestParam("kind2") String kind2, HttpSession session) {
         String sourceName = myfile.getOriginalFilename();
         String fileType = sourceName.substring(sourceName.lastIndexOf("."));
         if (myfile.isEmpty()) {
@@ -111,8 +118,12 @@ public class DomainNetworkController {
                             .proportion("0")
                             .build(), initHttpHeaders(), HttpStatus.OK);
         }
+        String classpath = session.getServletContext().getRealPath("/");
+        //String webappRoot = classpath.replaceAll("WEB-INF/classes/", "");
+        //System.out.println(classpath);
+
         // 存放文件临时路径
-        String base = "/upload";  //获取文件上传的路径，在webapp下的upload中
+        String base = classpath+"/upload";  //获取文件上传的路径，在webapp下的upload中
         File file = new File(base);
         if (!file.exists()) {
             file.mkdirs();
@@ -143,7 +154,7 @@ public class DomainNetworkController {
             List<String> vertexs = new ArrayList<>();
             while ((line = br.readLine()) != null) {
                 vertexs.add(line);
-                System.out.println(line);
+                //System.out.println(line);
             }
             List<DomainAnalysePO> pos = handleNetworkNode.getMcss(kind2);
             List<String> res = handleNetworkNode.computeInvalid(pos,vertexs);

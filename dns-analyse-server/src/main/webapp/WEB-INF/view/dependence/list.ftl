@@ -41,11 +41,11 @@
         </div>
         <div class="form-group">
             <label>&nbsp;&nbsp;是否存在跨域依赖:</label>
-            <#--<select id="select" style="height: 30px;z-index:auto;">-->
-                <#--<option value="2">不限</option>-->
-                <#--<option value="1">是</option>-->
-                <#--<option value="0">否</option>-->
-            <#--</select>-->
+            <select id="select" style="height: 30px;z-index:auto;">
+                <option value="2">不限</option>
+                <option value="1">是</option>
+                <option value="0">否</option>
+            </select>
         </div>
         <div class="form-group">
             <input type="button" id="searchTraceBtn" class="btn btn-danger icon-search" value="查询"/>
@@ -120,7 +120,7 @@
                 domain: $('#domain').val(),
                 sort:params.sort,
                 sortOrder:params.order,
-                crossDomain: 2//$('#select').val()   //新建字段
+                crossDomain: $('#select').val()   //新建字段
             }
         },
         responseHandler: function (res) {
@@ -158,10 +158,10 @@
             },
             {
                 field: 'crossDomain',
-                title: '是否跨域依赖'
-//                formatter: function (value) {
-//                    return SQTBusinessTypeEnum[value] + '(' + value + ')';
-//                }
+                title: '是否跨域依赖',
+               formatter: function (value) {
+                     return value === 1 ?  '跨域':'未跨域';
+               }
             }
 //            {
 //                field: 'createdTime',

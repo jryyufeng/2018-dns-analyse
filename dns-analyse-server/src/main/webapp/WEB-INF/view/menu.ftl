@@ -8,7 +8,7 @@
 
 <#--菜单-->
 <ul class="nav nav-list">
-    <li class="active" onclick="loadPage('/admin/view/main/mainView');">
+    <li class="active" onclick="loadPage('/admin/view/main/allView');">
         <a href="javascript:void(0);">
             <i class="icon-link"></i>
             <span class="menu-text"> 大盘概况 </span>
@@ -77,12 +77,12 @@
                     <span class="menu-text"> 核心域展示 </span>
                 </a>
             </li>
-            <li onclick="loadPage('/admin/view/coreDomain/topologicalStructure');">
-                <a href="javascript:void(0);">
-                    <i class="icon-arrow-right"></i>
-                    <span class="menu-text"> 拓扑特征 </span>
-                </a>
-            </li>
+            <#--<li onclick="loadPage('/admin/view/coreDomain/topologicalStructure');">-->
+                <#--<a href="javascript:void(0);">-->
+                    <#--<i class="icon-arrow-right"></i>-->
+                    <#--<span class="menu-text"> 拓扑特征 </span>-->
+                <#--</a>-->
+            <#--</li>-->
 
             <li onclick="loadPage('/admin/view/coreDomain/tryDislodge');">
                 <a href="javascript:void(0);">

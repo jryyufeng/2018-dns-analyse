@@ -16,7 +16,7 @@
 
 
     <context:annotation-config/>
-    <context:component-scan base-package="dns.analyse.controller">
+    <context:component-scan base-package="dns.analyse">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
@@ -33,7 +33,8 @@
 
     <aop:config proxy-target-class="true"/>
     <!--定时任务支持-->
-    <task:annotation-driven />
+    <task:annotation-driven scheduler="scheduler"/>
+    <task:scheduler id="scheduler" pool-size="10" />
 
     <mvc:default-servlet-handler />
     <mvc:resources mapping="/dnsAnalyse/**" location="dnsAnalyse/"/>

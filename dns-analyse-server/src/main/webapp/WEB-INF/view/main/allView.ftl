@@ -34,11 +34,40 @@
         </div>
         <div>
             <div class="div-inline" id="main2" style="width: 500px;height:400px; float:left;"></div>
-            <label>&nbsp;&nbsp;故障解析比例</label>
-            <label>&nbsp;&nbsp;ip地址占比</label>
-            <label>&nbsp;&nbsp;使用cdn域名占比</label>
-            <label>&nbsp;&nbsp;cdn ip占比</label>
-            <label>&nbsp;&nbsp;域名类型占比</label>
+            &nbsp;&nbsp;&nbsp;
+            <div class="div-inline" id="main3" style="width: 500px; height: 400px; float: left">
+                <h3 style="font-weight:bold">网络图轮播</h3>
+                </br>
+                <div id="myCarousel" class="carousel slide">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="${ctx}/resources/image/activity.png" alt="First slide">
+                        </div>
+                        <div class="item">
+                            <img src="${ctx}/resources/image/activity.png" alt="Second slide">
+                        </div>
+                        <div class="item">
+                            <img src="${ctx}/resources/image/activity.png" alt="Third slide">
+                        </div>
+                    </div>
+                    <!-- 轮播（Carousel）导航 -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <script>

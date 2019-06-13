@@ -2,6 +2,7 @@ package dns.analyse.service.impl;
 
 import dns.analyse.Enum.DomainTypeEnum;
 import dns.analyse.dao.mapper.DomainDependenceDAO;
+import dns.analyse.dao.mapper.DomainNetWorkDAO;
 import dns.analyse.dao.model.DomainDependencePO;
 import dns.analyse.service.IDnsDomainDependenceService;
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import javax.annotation.PostConstruct;
@@ -32,7 +34,8 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
     private static final Logger LOGGER = LogManager.getLogger(DnsDomainDependenceServiceImpl.class.getName());
     @Autowired
     DomainDependenceDAO domainDependenceDAO;
-
+    @Autowired
+    DomainNetWorkDAO domainNetWorkDAO;
     @Override
     public Integer insert(DomainDependencePO po) {
         return domainDependenceDAO.insert(po);
@@ -120,6 +123,24 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
         });
         return true;
     }
+    @Override
+    public Boolean setDomainTypeByDomain(String domain){
+        List<DomainDependencePO> pos = domainDependenceDAO.queryAllByCondition(DomainDependencePO.builder().domain(domain).build());
+        if(CollectionUtils.isEmpty(pos)){
+            return false;
+        }
+        String[] domains = pos.get(0).getDomain().split("\\.");
+        String isCn = domains[domains.length-1];
+        if(isCn.contains("/")){
+            isCn = isCn.split("/")[0];
+        }
+        Integer num = domainDependenceDAO.updateByCondition(DomainDependencePO.builder()
+                .isCn(isCn)
+                .build(),DomainDependencePO.builder()
+                .id(pos.get(0).getId())
+                .build());
+        return num == 1;
+    }
 
     /**
      * 以后要入缓存
@@ -147,6 +168,16 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
     public int getDOMAIN_NUMTYPE(String numType){
         try {
             Integer count = DOMAIN_NUMTYPE_CACHE.get(numType);
+            return count;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    @Override
+    public int getNetWorkChartNum(String chartName){
+        try {
+            Integer count = NETWORK_NUM_CACHE.get(chartName);
             return count;
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -190,6 +221,16 @@ public class DnsDomainDependenceServiceImpl implements IDnsDomainDependenceServi
                 @Override
                 public Integer load(String s) throws Exception {
                    Integer res =  domainDependenceDAO.queryNumByType(s);
+                    return res;
+                }
+            });
+    private LoadingCache<String,Integer> NETWORK_NUM_CACHE = CacheBuilder.newBuilder()
+            .maximumSize(1024)
+            .expireAfterAccess(30,TimeUnit.DAYS)
+            .build(new CacheLoader<String, Integer>() {
+                @Override
+                public Integer load(String s) throws Exception {
+                    Integer res =  domainNetWorkDAO.queryCountByCharts(Arrays.asList(s.split(";")));
                     return res;
                 }
             });

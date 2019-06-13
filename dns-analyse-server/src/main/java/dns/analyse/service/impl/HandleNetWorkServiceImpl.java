@@ -1,10 +1,12 @@
 package dns.analyse.service.impl;
 
+import dns.analyse.Enum.LogTypeEnum;
 import dns.analyse.dao.model.DomainAnalysePO;
 import dns.analyse.dao.model.DomainNetWorkPO;
 import dns.analyse.service.IDomainAnalyse;
 import dns.analyse.service.IDomainNetworkService;
 import dns.analyse.service.IHandleNetworkNode;
+import dns.analyse.service.tools.LogAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,7 @@ public class HandleNetWorkServiceImpl implements IHandleNetworkNode {
     IDomainNetworkService domainNetworkService;
 
     @Override
-    //需要唯一确定一个图
-
+    @LogAnnotation(title = "分析图",action = "根据随机还是核心方式",type = LogTypeEnum.INFO)
     public List<String> getVertexByPercent(Integer pattern, double percent, String attribute,String chartNmae,String kind2){
         Integer count = domainNetworkService.queryCountByCondition(DomainNetWorkPO.builder().chart(chartNmae).build());
         Integer needNum = new Double(count*percent).intValue();
@@ -72,9 +73,6 @@ public class HandleNetWorkServiceImpl implements IHandleNetworkNode {
              allMcsList) {
             if(vertexs.containsAll(mcs)){
                 a+=1;
-                System.out.println(a);
-            }else{
-                System.out.println(mcs);
             }
         }
         DecimalFormat df=new DecimalFormat("0.0000");

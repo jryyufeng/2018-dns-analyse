@@ -30,7 +30,8 @@
         core_num,
         eigenvct_centrality,
         pagerank,
-        between_centrality
+        between_centrality,
+        kind2
         FROM  domain_network
     </sql>
 
@@ -87,6 +88,32 @@
         </where>
     </select>
 
+    <select id="queryCountByCharts" parameterType="map" resultType="java.lang.Integer" >
+        SELECT  count(*) from domain_network
+        <where>
+            1=1
+            <if test="chartList != null and chartList.size > 0">
+              and chart in
+                <foreach item="item" index="index" collection="chartList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="queryPageByCharts" parameterType="map" resultMap="domainNetWorkResultMap">
+        <include refid="selectField"/>
+        <where>
+            1=1
+            <if test="chartList != null and chartList.size > 0">
+            and chart in
+                <foreach item="item" index="index" collection="chartList" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            limit ${fromNum},${pageSize}
+        </where>
+    </select>
 
     <select id="queryPageByCondition" parameterType="map" resultMap="domainNetWorkResultMap">
         <include refid="selectField"/>

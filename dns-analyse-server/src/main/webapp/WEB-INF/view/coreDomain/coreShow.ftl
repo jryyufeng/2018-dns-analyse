@@ -32,7 +32,7 @@
         <div class="form-group">
             <label class="col-sm-4 control-label" for="createdBy">信息来源:</label>
             <div class="col-sm-5">
-                <select class="selectthis" id="example-getting-started">
+                <select class="selectthis" id="example-getting-started" multiple="multiple">
                     <#--multiple="multiple"-->
                     <option value="graph_chain_100">100域名网络图</option>
                     <option value="graph_chain_1000">1K域名网络图</option>
@@ -47,9 +47,15 @@
         </div>
     </form>
 </div>
-</br>
+<div class="alert alert-success" role="alert">
+    介数：定义为网络中所有最短路径中经过该节点的路径的数目占最短路径总数的比例
+    </br>
+    聚集数：描述了一个点的外部连接聚集程度
+    </br>
+    核数k-core：删除一幅图中所有度小于 的顶点。一些余下的顶点仍然具有小于 条边。接着删除这些顶点，如此直到不再有删除的可能
+</div>
 <div class="panel panel-default">
-    <div class="panel-body">
+     <div class="panel-body">
         <table id="orderDataTable"></table>
     </div>
 </div>
@@ -127,6 +133,10 @@
             {
                 field: 'clustering',
                 title: '聚集数'
+            },
+            {
+                field: 'kind2',
+                title: '图类型'
             }
         ]
     });

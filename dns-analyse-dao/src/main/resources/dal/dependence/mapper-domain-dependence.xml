@@ -135,9 +135,9 @@
             <if test="condition.isCdn != null   and condition.isCdn !='' ">
                 AND is_cdn =#{condition.isCdn,jdbcType=TINYINT}
             </if>
-            <!--<if test="condition.crossDomain != 2 ">-->
-            <!--AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}-->
-            <!--</if>-->
+            <if test="condition.crossDomain != 2 ">
+            AND cross_domain =#{condition.crossDomain,jdbcType=INTEGER}
+            </if>
         </where>
     </select>
 

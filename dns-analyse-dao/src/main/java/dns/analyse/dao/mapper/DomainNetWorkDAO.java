@@ -13,4 +13,8 @@ import java.util.List;
  */
 public interface DomainNetWorkDAO extends BaseDAO<DomainNetWorkPO,Integer> {
     List<String> getVertexByType(@Param("needNum")Integer needNum,@Param("type")String type,@Param("chart") String chart,@Param("kind2") String kind2);
+
+    List<DomainNetWorkPO> queryPageByCharts(@Param("chartList") List<String> charts,@Param("fromNum") Integer fromNum, @Param("pageSize") Integer pageSize);
+
+    Integer queryCountByCharts(@Param("chartList") List<String> charts);
 }

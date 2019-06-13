@@ -9,4 +9,5 @@ import dns.analyse.dao.model.DomainDetailPO;
  */
 public interface IDomainDetailService extends IDnsBaseService<DomainDetailPO> {
     void detailHandler(Integer start,Integer end);
+    boolean detailHadnlerByDomain(String domain);
 }
