@@ -46,6 +46,13 @@ public class DomainIpController {
 
     //查询结果入缓存，先在缓存中取，没有再访问数据库
 
+    /**
+     * 分页接口，分页获取Ip列表
+     * @param vo
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/list")
     @ResponseBody
     public DomainIpVO getList(DomainIpPO vo, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize){
@@ -76,6 +83,12 @@ public class DomainIpController {
                 .pageSize(pageSize)
                 .build();
     }
+
+    /**
+     * 根据domain获取，该域名下服务器的IP信息
+     * @param domain
+     * @return
+     */
     @GetMapping("/getIpRegion")
     @ResponseBody
     public List<IpRegionVO> getIpRegion(String domain){
@@ -100,7 +113,11 @@ public class DomainIpController {
         });
         return vos;
     }
-
+    /**
+     * 根据domain获取，该域名下服务器的IP的城市信息
+     * @param domain
+     * @return
+     */
     @GetMapping("/getIpInfo/country")
     @ResponseBody
     public IpCountryVO getIpCountry(String domain){

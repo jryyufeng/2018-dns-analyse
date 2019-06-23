@@ -57,6 +57,13 @@ public class DomainNetworkController {
     @Autowired
     IDnsDomainDependenceService dnsDomainDependenceService;
 
+    /**
+     * 分页查询，返回指定图名的网络图各指标分析信息
+     * @param chartName
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/list")
     @ResponseBody
     public DomainNetworkVO getList(@RequestParam(defaultValue = "graph_chain_100") String chartName, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize) {
@@ -71,6 +78,15 @@ public class DomainNetworkController {
                 .build();
     }
 
+    /**
+     * 根据某指标，通过（随机/核心）方式删除节点
+     * @param pattern
+     * @param percent
+     * @param attribute
+     * @param chartNmae
+     * @param kind2
+     * @return
+     */
     @GetMapping("/deleteNode")
     @ResponseBody
     public DeleteNodeVO deleteNode(Integer pattern, double percent, String attribute, String chartNmae, String kind2) {
@@ -97,6 +113,13 @@ public class DomainNetworkController {
         return headers;
     }
 
+    /**
+     * 批量处理，上传文件接口
+     * @param myfile
+     * @param kind2
+     * @param session
+     * @return
+     */
     @RequestMapping("/handleFile")
     @ResponseBody
     public ResponseEntity<DeleteNodeVO> handleFile(@RequestParam("myfile") MultipartFile myfile, @RequestParam("kind2") String kind2, HttpSession session) {

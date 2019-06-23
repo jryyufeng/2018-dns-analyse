@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequestMapping("/admin/view/{moudle}")
+/**
+ * 用于返回页面，非数据接口
+ */
 public class BaseViewController {
     @GetMapping("/{feature}")
     public String redict(@PathVariable String moudle, @PathVariable String feature) {

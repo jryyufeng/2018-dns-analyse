@@ -37,6 +37,13 @@ public class TreeAnalyseController {
     @Autowired
     RedisCacheManager redisCacheManager;
 
+    /**
+     * 分页查询接口，返回故障树结果列表
+     * @param po
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/list")
     @ResponseBody
     public DomainAnalyseVO getList(DomainAnalysePO po, @RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "20") int pageSize){
@@ -55,6 +62,11 @@ public class TreeAnalyseController {
                 .build();
     }
 
+    /**
+     * 根据domain，查询域名下服务器结构重要度列表
+     * @param domain
+     * @return
+     */
     @GetMapping("/queryServerInfo")
     @ResponseBody
     public List<AnalyseServerInfoVO> queryServerInfo(@RequestParam(defaultValue = "www.baidu.com") String domain){
@@ -96,6 +108,11 @@ public class TreeAnalyseController {
 
     }
 
+    /**
+     *根据domain，查询域名下服务器结构重要度列表
+     * @param domain
+     * @return
+     */
     @GetMapping("/queryImportance")
     @ResponseBody
     public List<AnalyseServerInfoVO> queryImportance(@RequestParam(defaultValue = "www.baidu.com") String domain){
@@ -143,6 +160,12 @@ public class TreeAnalyseController {
             return null;
         }
     }
+
+    /**
+     * 查询某域名的割集详情
+     * @param domain
+     * @return
+     */
     @GetMapping("/queryMcs")
     @ResponseBody
     public List<String> queryMcs(@RequestParam(defaultValue = "www.baidu.com") String domain){
@@ -159,6 +182,11 @@ public class TreeAnalyseController {
         }
         return Arrays.asList(importance.split("\\)\\("));
     }
+    /**
+     * 查询某域名的路集详情
+     * @param domain
+     * @return
+     */
     @GetMapping("/queryMps")
     @ResponseBody
     public List<String> queryMps(@RequestParam(defaultValue = "www.baidu.com") String domain){
@@ -175,6 +203,11 @@ public class TreeAnalyseController {
         }
         return Arrays.asList(importance.split("\\)\\("));
     }
+    /**
+     * 格式化查询某域名中存在某服务器的割集集合
+     * @param domain
+     * @return
+     */
     @GetMapping("/speculative/failureMps")
     @ResponseBody
     public List<String> failureMps(@RequestParam(defaultValue = "www.baidu.com") String domain,String server){

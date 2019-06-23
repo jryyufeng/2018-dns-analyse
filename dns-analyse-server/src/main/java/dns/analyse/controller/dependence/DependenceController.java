@@ -51,6 +51,14 @@ public class DependenceController {
     @Autowired
     IDomainDetailService domainDetailService;
 
+    /**
+     * 获取依赖信息列表
+     * @param vo
+     * @param pageNum
+     * @param pageSize
+     * @param sort
+     * @return
+     */
     @GetMapping("/list")
     @LogAnnotation(title = "依赖信息",action = "获取依赖信息列表")
     @ResponseBody
@@ -68,6 +76,12 @@ public class DependenceController {
                 .pageSize(pageSize)
                 .build();
     }
+
+    /**
+     * 根据domain获取cdn服务器列表
+     * @param domain
+     * @return
+     */
     @GetMapping("/cdnServer")
     @ResponseBody
     public List<CdnServerInfoVO> getcdnServer(String domain){
@@ -99,6 +113,11 @@ public class DependenceController {
     }
     //CDN信息写入缓存
 
+    /**
+     * 获取子域依赖详情
+     * @param domain
+     * @return
+     */
     @GetMapping("/getSubDetail")
     @ResponseBody
     public DomainDetailPO getSubDetail(String domain){
