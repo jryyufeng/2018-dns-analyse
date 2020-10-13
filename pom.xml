@@ -23,7 +23,7 @@
         <commons-io.version>2.6</commons-io.version>
         <commons-codec.version>1.11</commons-codec.version>
         <commons-beanutils.version>1.9.2</commons-beanutils.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <fastjson.version>1.2.41</fastjson.version>
         <mysql.version>5.1.25</mysql.version>
         <sqt-common-lib.version>1.1.11-SNAPSHOT</sqt-common-lib.version>
